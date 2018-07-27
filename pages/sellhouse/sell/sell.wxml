@@ -1,0 +1,141 @@
+<!--pages/sellhouse/sell/sell.wxml-->
+<view hidden='{{showSearch}}' class='{{!showType||!showHX?"noscroll":""}}'>
+  <view class='sell_house_tab f_16 lh40 bg_w line_b'>
+    <view class='w50 text_middle {{isRent?"":"current"}}' catchtap='sellTab'>出售</view>
+    <view class='w50 text_middle {{isRent?"current":""}}' catchtap='rentTab'>出租</view>
+  </view>
+  <view class='bg_w sell_house_form lh50 f_15'>
+  <!--小区  -->
+    <view class='bg_w line_b clearfix p_rl15 pr' data-url='/pages/sellhouse/search/search' catchtap='toSearch'>
+      <view class='fl pa l15t0'>您的小区</view>
+      <input type='number' style='width:200px;' disabled='true' value='{{estateName}}' class='m_r15 fr text_right sell_inp' placeholder='请输入（{{siteName}}）小区'></input>
+      <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+    </view>
+    <!-- 面积 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' >
+      <view class='fl pa l15t0'>面积</view>
+      <text class='fr pa p_l10 r15t0'>㎡</text>
+      <input type='number' maxlength='10' class='p_r20 fr text_right sell_inp c_orange' value='{{fanArea}}' bindinput='selectArea' placeholder='输入您的房屋面积'></input>
+    </view>
+    <!-- 类型 -->
+    <view class='bg_w line_b clearfix p_rl15 pr'  catchtap='toShowType'>
+      <view class='fl pa l15t0'>类型</view>
+      <input type='number' disabled='true' class='m_r15 fr text_right sell_inp' value='{{typeText}}' placeholder='请选择您的房源类型'></input>
+      <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+    </view>
+    <!-- 户型 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' catchtap='toShowHX'>
+      <view class='fl pa l15t0'>户型</view>
+      <input type='number' disabled='true' class='m_r15 fr text_right sell_inp' value='{{HXText}}' placeholder='请选择您的户型'></input>
+      <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+    </view>
+    <!-- 售价 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' hidden='{{isRent}}'>
+      <view class='fl pa l15t0'>售价</view>
+      <text class='fr pa p_l10 r15t0'>万</text>
+      <input type='number' maxlength='10' class='p_r20 fr text_right sell_inp c_orange' bindinput='selectSellPrice'  value='{{sellPrice}}' placeholder='请输入您的房价'></input>
+    </view>
+    <!-- 租金 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' hidden='{{!isRent}}'>
+      <view class='fl pa l15t0'>租金</view>
+      <text class='fr pa p_l10 r15t0'>元/月</text>
+      <input type='number' maxlength='10' class='p_r40 fr text_right sell_inp c_orange' bindinput='selectRentPrice' value='{{rentPrice}}' placeholder='请输入您的租金'></input>
+    </view>
+    <!-- 手机号码 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' >
+      <view class='fl pa l15t0'>手机号码</view>
+      <input type='number' maxlength="11" class=' fr text_right sell_inp' bindinput='selectPhone' value='{{phoneNum}}' placeholder='请输入手机号码'></input>
+    </view>
+    <!-- 短信验证码 -->
+    <view class='bg_w line_b clearfix p_rl15 pr' style='overflow:hidden;'>
+      <view class='fl pa l15t0'>短信验证码</view>
+      <button disabled='{{disabled}}' class=' get_code fr f_12 p_l10' catchtap='getCode'>{{codeText}}</button>
+      <input type='number'  maxlength='4' class='img_middle fr text_right sell_inp' bindinput='selectCode' style='width:120px;' value='{{phoneCode}}' placeholder='请输入验证码'></input>
+    </view>
+  </view>
+  <view class='p_rl15 entrust'>
+    <button class='entrust_btn' data-url="/pages/sellhouse/success/success" disabled='{{canEntrust}}' catchtap='requestBtn'>立即委托</button>
+  </view>
+  <view class='p_rl15' style='margin-top:30px;' hidden='{{isRent}}'>
+    <image src='/assets/icon/serve_flow.png' mode='widthFix' style='width:100%;'></image>
+  </view>
+</view>
+
+
+<!--小区搜索  -->
+<view class='search_pop' hidden='{{!showSearch}}'>
+  <view class='search_house bg_f1'>
+    <view class='house_inp'>
+      <input class='f_14 c666' placeholder='请输入您的小区' focus='{{searchFocus}}' value='{{searchVal}}' bindinput="searchEstate"/>
+      <view class='del_icon_box' catchtap='emptySearch' hidden='{{!searchVal}}'>
+        <image class='del_icon' src='/assets/icon/search_bksp@2X.png' mode='widthFix'></image>
+      </view>
+    </view>
+    <view class='cancel_btn f_14' catchtap='cancelSearch'>取消</view>
+  </view>
+  <view style='margin-top:56px;'>
+    <view class='search_list bg_w'>
+      <view catchtap='selectEstate' class='search_item p_tb10 line_b p_rl15' data-rid='{{item.region_id}}' data-id='{{item.estate_id}}' data-name='{{item.estate_name}}' wx:for='{{searchList}}' wx:key='key' wx:for-item='item'>
+        <view class='f_16'><text wx:for='{{item.estate_name}}' wx:key='key' wx:for-item='val' class='{{val==searchVal?"c_orange":""}}'>{{val}}</text></view>
+        <text class='f_14 c999'>{{item.region_name}}</text>
+      </view>
+      <!-- <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{noSearch}}'>没有找到匹配的小区</view> -->
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{!noSearch}}'>{{searchMore?'请输入搜索关键字':'正在搜索中'}}</view>
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{noSearch}}'>{{hasMore?'没有找到匹配的小区':'没有更多匹配的小区'}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部类型选择弹出 -->
+<view class='shade'  catchtap='cancelBottom' hidden='{{showType}}'>
+  <view class="bottom_pop">
+    <view class=' bottom_bar f_16 lh40 clearfix'>
+      <text class='p_rl15 fl'  catchtap='cancelBottom' >取消</text>
+      <text class='p_rl15 fr c_orange' catchtap='selectTypeSure'>确定</text>
+    </view>
+    <scroll-view scroll-y class='bottom_list'>
+      <view data-type='-1' catchtap='selectType' class='bottom_item text_middle lh40 f_14 line_b {{fanType==-1?"c_orange":""}}'>请选择</view>
+      <view data-type='1' catchtap='selectType' class='bottom_item text_middle lh40 f_14 line_b {{fanType==1?"c_orange":""}}'>住宅</view>
+      <view data-type='2' catchtap='selectType' class='bottom_item text_middle lh40 f_14 line_b {{fanType==2?"c_orange":""}}'>商铺</view>
+      <view data-type='3' catchtap='selectType' class='bottom_item text_middle lh40 f_14 line_b {{fanType==3?"c_orange":""}}'>写字楼</view>
+      <view data-type='4' catchtap='selectType' class='bottom_item text_middle lh40 f_14 line_b {{fanType==4?"c_orange":""}}'>别墅</view>
+    </scroll-view>
+  </view>
+</view> 
+<!-- 底部类型选择弹出 -->
+<view class='shade' catchtap='cancelBottom'  hidden='{{showHX}}'>
+  <view class="bottom_pop">
+    <view class='bottom_bar f_16 lh40 clearfix'>
+      <text class='p_rl15 fl' catchtap='cancelBottom' >取消</text>
+      <text class='p_rl15 fr c_orange'  catchtap='selectHXSure'>确定</text>
+    </view>
+    <view class='bottom_list'>
+      <scroll-view scroll-y style='height:200px;' class='bottom_col3 line_r'>
+        <view data-hx='-1' data-index='0' catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==-1?"c_orange":""}}'>请选择</view>
+        <!-- <view data-hx='1' data-index='0'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==1?"c_orange":""}}'>1室</view>
+        <view data-hx='2' data-index='0'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==2?"c_orange":""}}'>2室</view>
+        <view data-hx='3' data-index='0'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==3?"c_orange":""}}'>3室</view>
+        <view data-hx='4' data-index='0'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==4?"c_orange":""}}'>4室</view> -->
+        <view wx:for='{{HXSelect[0]}}' wx:key='key' wx:for-index='index' wx:for-item='item' data-hx='{{index+1}}' data-index='0'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[0]==(index+1)?"c_orange":""}}'>{{index+1}}室</view>
+      </scroll-view>
+      <scroll-view scroll-y style='height:200px;' class='bottom_col3 line_r'>
+        <view data-hx='-1' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==-1?"c_orange":""}}'>请选择</view>
+        <!-- <view data-hx='0' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==0?"c_orange":""}}'>0厅</view>
+        <view data-hx='1' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==1?"c_orange":""}}'>1厅</view>
+        <view data-hx='2' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==2?"c_orange":""}}'>2厅</view>
+        <view data-hx='3' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==3?"c_orange":""}}'>3厅</view> -->
+        <view wx:for='{{HXSelect[1]}}' wx:key='key' wx:for-index='index' wx:for-item='item' data-hx='{{index}}' data-index='1'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[1]==index?"c_orange":""}}'>{{index}}厅</view>
+      </scroll-view>
+      <scroll-view scroll-y style='height:200px;' class='bottom_col3'>
+        <view data-hx='-1' data-index='2'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[2]==-1?"c_orange":""}}'>请选择</view>
+        <!-- <view data-hx='0' data-index='2'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[2]==0?"c_orange":""}}'>0卫</view>
+        <view data-hx='1' data-index='2'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[2]==1?"c_orange":""}}'>1卫</view>
+        <view data-hx='2' data-index='2'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[2]==2?"c_orange":""}}'>2卫</view> -->
+        <view wx:for='{{HXSelect[1]}}' wx:key='key' wx:for-index='index' wx:for-item='item'  data-hx='{{index}}' data-index='2'  catchtap='selectHX' class='bottom_item text_middle lh40 f_14 line_b {{fanHX[2]==index?"c_orange":""}}'>{{index}}卫</view>
+      </scroll-view>
+    </view>
+  </view>
+</view> 
+
+<!-- 导航边框  -->
+<view class='tab_bar_border'></view>

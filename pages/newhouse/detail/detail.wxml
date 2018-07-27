@@ -1,0 +1,235 @@
+<!-- 新房详情 -->
+<import src="../../template/alert/alert.wxml"/>
+<view wx:if='{{isDataBack}}'>
+  <view class='detail_box pr'>
+  <!--swiper  -->
+    <swiper  bindchange='changePage'>
+      <swiper-item  wx:for='{{detailData.banners}}' wx:key='key' wx:for-item='item'>
+        <image catchtap='previewBannerFn' data-url='{{item}}' style='width:100%' src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+    <!-- swipe page -->
+    <view class='swiper_page pa f_12'>
+      <view>
+        <text>{{currentPage}}</text><text>/</text><text>{{allPage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail_list f_14'>
+    <view class='bg_w p_rl15  detail_name line_b p_t10'>
+      <view class='lh40 h40 pr'>
+        <view class='max_w50 inline_block'><text class='img_middle f_16 m_r10 oneIn oneIn_1'>{{detailData.estate_name}}</text></view>
+        <text class='img_middle type_label c_orange'>{{detailData.estate_type}}</text>
+        <view class='collect_icon pa text_middle' catchtap='toCollect'>
+          <image src='{{collectPop.img}}' mode='widthFix' style='width:24px;'></image>
+          <view class='f_12 c999 lh0'>{{collectPop.btnText}}</view>
+        </view>
+      </view>
+      <view class='f_14 pr c666 f_12' style='width:80%'>
+        <text>[{{detailData.region_name}}]</text>
+        <text class='m_r5'>{{detailData.estate_address}}</text>
+        <image class='address_icon' mode='widthFix' src='/assets/icon/location_icon@2X.png'></image>
+        
+      </view>
+    </view>
+    <view class='bg_w p_rl15  detail_price_area lh20 p_tb10 line_b'>
+      <view class='detail_price line_r'>
+        <view class='c_orange'>{{detailData.estate_price}}</view>
+        <view class='c666'>售价</view>
+      </view>
+      <view class='detail_area'>
+        <view class='c_orange'>{{detailData.fang_area_range}}</view>
+        <view class='c666'>面积</view>
+      </view>
+    </view>
+    <view class='bg_w p_rl15  detail_msg f_12 lh30 p_tb10'>
+      <view style='height:30px;'>
+        <view class='w50' style='overflow:hidden'>
+          <text class='c999'>开盘时间：</text>
+          <text>{{detailData.estate_start_time}}</text>
+        </view>
+        <view class='w50' style='overflow:hidden'>
+          <text class='c999'>交房时间：</text>
+          <text>{{detailData.estate_livein_time}}</text>
+        </view>
+      </view>
+      <view>
+        <view class='w50'>
+          <text class='c999'>物业类型：</text>
+          <text>{{detailData.estate_type}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>装修情况：</text>
+          <text>{{detailData.estate_decoration}}</text>
+        </view>
+      </view>
+      <view>
+        <view class='w50'>
+          <text class='c999'>规划户数：</text>
+          <text>{{detailData.estate_house_num}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>车位数：</text>
+          <text>{{detailData.estate_park_num}}</text>
+        </view>
+      </view>
+      <view>
+        <view class='w50'>
+          <text class='c999'>容积率：</text>
+          <text>{{detailData.estate_plot_ratio}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>绿化率：</text>
+          <text>{{detailData.estate_green_ratio}}</text>
+        </view>
+      </view>
+      <view>
+        <view class='w50'>
+          <text class='c999'>建筑面积：</text>
+          <text>{{detailData.estate_floor_area}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>产权：</text>
+          <text>{{detailData.estate_year}}</text>
+        </view>
+      </view>
+      <view>
+        <text class='c999'>开发商：</text>
+        <text>{{detailData.estate_developer}}</text>
+      </view>
+      <view>
+        <text class='c999'>物业公司：</text>
+        <text>{{detailData.wuye_company}}</text>
+      </view>
+    </view>
+    <view class='bg_f1' style='height:10px;' wx:if='{{showActive}}'></view>
+    <view class='bg_w' wx:if='{{showActive}}'>
+      <view class='line_b p_rl15'>
+        <text class='lh46'>最新活动</text>
+      </view>
+      <view class='p_rl15'>
+        <view class='pr'>
+          <text class='active_title lh40 oneIn oneIn_1'>{{detailData.preferential.title}}</text>
+          <button class='apply pa' hover-class='tab_class_o' data-newtype='{{detailData.preferential.news_type}}' data-newid='{{detailData.preferential.news_id}}' catchtap='applyBtn'>立即报名</button>
+        </view>
+        <view class='f_12' catchtap='readMore'  data-index='0'>
+          <view hidden='{{actReadMore}}' class='active_content pr oneIn c666 lh20'>{{detailData.preferential.news_content_short}}</view>
+          <view hidden='{{!actReadMore}}' class='active_content pr oneIn c666 lh20'>{{detailData.preferential.news_content}}</view>
+          <view catchtap='actChangeRead' wx:if='{{actChangeBtn}}' class='act_read_more read_more f_12 bg_w text_left p_t5'>{{!actReadMore?"阅读更多":"收起"}}</view>
+        </view>
+        <view class='active_content lh40 oneIn oneIn_1'>
+          <text class='c_orange'>距离结束剩余{{detailData.preferential.time_end}}</text>
+          <text class='c666 fr'>{{detailData.preferential.count}}人已经报名</text>
+        </view>
+      </view>
+    </view>
+    <view class='bg_f1' style='height:10px;'  wx:if='{{detailData.news.length!=0}}'></view>
+    <!--最新动态  -->
+    <view class='new_statu'>
+      <view class='lh46 bg_w p_rl15 line_b' wx:if='{{detailData.news.length!=0}}'>最新动态</view>
+      <view class='bg_w p_rl15 line_b'  wx:for='{{detailData.news}}' wx:key='key' wx:for-index='idx' wx:for-item='val'>
+        <view class='lh40 oneIn oneIn_1'>{{val.news_title}}</view>
+        <view hidden='{{!newsReadMore[idx].showNews}}' class='oneIn f_12 lh20 c666'>{{val.news_content}}</view>
+        <view hidden='{{newsReadMore[idx].showNews}}' class='oneIn f_12 lh20 c666'>{{val.news_content_short}}</view>
+        <view catchtap='newsChangeRead' wx:if='{{newsReadMore[idx].showBtn}}' data-index='{{idx}}' class='read_more f_12 bg_w text_left p_t5'>{{newsReadMore[idx].btn?"阅读更多":"收起"}}</view>
+        <view class='f_12 c999 lh30'>{{val.news_time_create}}</view>
+      </view>
+    </view>
+    <view class='bg_f1' style='height:10px;'></view>
+    <!--主力户型  -->
+    <view class='main_type' wx:if='{{detailType.length!=0}}'>
+      <view class='lh46 bg_w p_rl15 line_b'>主力户型</view>
+      <view>
+        <movable-area style="height: 220px;width: 100%;background: #fff;overflow-x:scroll;overflow-y:visible;">
+          <movable-view style="height: 100%; width: {{HuxType}}px; background: #fff;" out-of-bounds="true" inertia="true" direction="horizontal" friction="1">
+          <view class='movable_item' catchtap='previewImgFn' data-url='{{item.upload_id}}' wx:for='{{detailType}}' wx:key='key' wx:for-item='item'>
+            <view class='type_img_box'>
+              <image src='{{item.upload_id}}' mode='aspectFill'></image>
+            </view>
+            <view class='f_14 lh20 oneIn oneIn_1 m_t5' style='width:160px;'>{{item.title}}</view>
+            <view class='f_12 lh20 oneIn oneIn_1 c999'>{{item.housetype_num}}</view>
+            <view class='f_12 lh20 oneIn oneIn_1'>{{item.housetype_status}}</view>
+          </view>
+          </movable-view>
+        </movable-area>
+      </view>
+    </view>
+    <!-- 楼盘卖点  -->
+    <view class='bg_f1' style='height:10px;'  wx:if='{{detailData.estate_sell_tip!=""}}'></view>
+    <view class='sale_point bg_w' wx:if='{{detailData.estate_sell_tip!=""}}'>
+      <view class='lh40 bg_w p_rl15 line_b'>楼盘卖点</view>
+      <view class='p_b10'>
+        <!-- <text class='point_content p_rl15 oneIn oneIn_3 lh20'>{{detailData.estate_sell_tip}}</text> -->
+        <text class='point_content p_rl15 oneIn {{readMore?"oneIn_4":""}} lh20'>{{detailData.estate_sell_tip}}</text>
+        <view catchtap='changeRead' class='read_more f_12 bg_w text_right p_rl20 p_t5'>{{readMore?"阅读更多":"收起"}}</view>
+      </view>
+    </view>
+
+    <view class='bg_f1' style='height:10px;'></view>
+    
+    <button class='subscribe fixed' catchtap='orderBtn'>预约看房</button>
+    <view class='temp_btn'></view>
+  </view>
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+<!-- alert名弹出框  -->
+<!-- <view class='shade' catchtouchmove='returnFalse'>
+  <view class="alert_box">
+    <view style='height:117px'>
+      <image class='alert_icon' src='{{apply.img}}' mode='widthFix' style="width: 56px;"></image>
+      <text class='alert_title'>{{apply.title}}!</text>
+      <text class="alert_main">{{apply.content}}</text>
+    </view>
+    <view class='alert_btn' catchtap='sureBtn'>
+      <text class='c333 f_16'>我知道了</text>
+    </view>
+  </view>
+</view> -->
+<template wx:if='{{alertPop}}' is="alertTpl" data='{{...alert}}'/>
+
+<!-- 报名弹出   -->
+<view class='shade' hidden='{{applyPop}}' catchtouchmove='returnFalse'>
+  <view class="apply_box p_rl15 pr" style='height:226px;'>
+    <view class='c_orange lh50 text_middle'>活动报名</view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_name@2X.png' class='pa apply_box_img' mode='widthFix' style='width:16px;'></image>
+      <input type='text' maxlength='5' class='f_14 p_tb10 p_l25' focus="{{applFocus}}" value='{{applyName}}' bindinput='applyNameFn' placeholder='请输入姓名'></input>
+    </view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_phone@2X.png' class='pa apply_box_img' mode='widthFix' style='width:14px;'></image>
+      <input type='number' maxlength='11' class='f_14 p_tb10 p_l25' bindinput='applyPhoneFn' value='{{applyPhone}}' placeholder='请输入手机号'></input>
+    </view>
+    <button class='apply_btn m_t20' disabled='{{applyActDisable}}' catchtap='putIn'>提交</button>
+    <!--close  -->
+    <view class='apply_close pa' catchtap='closeApply'>
+      <image src='/assets/icon/apply_close@2X.png' mode='widthFix' style='width:26px;'></image>
+    </view>
+  </view>
+</view>
+<!-- 预约看房 -->
+<view class='shade' hidden='{{orderPop}}' catchtouchmove='returnFalse'>
+  <view class="apply_box p_rl15 pr">
+    <view class='c_orange lh50 text_middle'>预约看房</view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_name@2X.png' class='pa apply_box_img' mode='widthFix' style='width:16px;'></image>
+      <input type='text' maxlength='5' class='f_14 p_tb10 p_l25' placeholder-class='style_bug' focus="{{orderFocus}}" value='{{orderName}}' bindinput='orderNameFn' placeholder='请输入姓名'></input>
+    </view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_phone@2X.png' class='pa apply_box_img' mode='widthFix' style='width:14px;'></image>
+      <input type='number' maxlength='11' class='f_14 p_tb10 p_l25' value='{{orderPhone}}' bindinput='orderPhoneFn' placeholder='请输入手机号'></input>
+    </view>
+    <view class='lh40 f_12 c666'>提交信息后会有专人通过电话联系您</view>
+    <button class='apply_btn m_t5' disabled='{{applyDisable}}' catchtap='orderSureBtn'>提交</button>
+    <!--close  -->
+    <view class='apply_close pa' catchtap='closeApply'>
+      <image src='/assets/icon/apply_close@2X.png' mode='widthFix' style='width:26px;'></image>
+    </view>
+  </view>
+</view>
+<!-- 收藏  -->
+<view class='collect_pop text_middle' hidden='{{toastShow}}'>
+   <image src='{{collectPop.img}}' mode='widthFix'></image>
+   <view class='cfff f_16'>{{collectPop.text}}</view>
+</view>

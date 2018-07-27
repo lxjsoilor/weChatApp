@@ -1,0 +1,50 @@
+
+.order_agent_card {
+  border-radius: 5px;
+  margin: 20px;
+  box-shadow: 0 2px 10px rgba(200, 200, 200, 0.1);
+}
+.order_agent {
+  width: 80px;
+  height: 80px;
+}
+
+.order_agent image {
+  width: 100%;
+  height: 100%;
+}
+
+.order_agent_form>view {
+  height: 45px;
+  line-height: 45px;
+}
+.order_agent_form input {
+  height: 45px;
+  line-height: 45px;
+  vertical-align: middle;
+  padding-left: 35px;
+  margin-bottom: 4px;
+}
+.gender_radio {
+  padding-left: 35px;
+}
+
+.gender_radio radio {
+  transform: scale(0.7)
+}
+
+.order_agent_btn {
+  margin-top: 60px;
+}
+.order_agent_btn button {
+  background-color: #fd7801;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.button-hover {
+  background-color: #fd9131 !important;
+}

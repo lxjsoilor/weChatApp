@@ -1,0 +1,80 @@
+<!--pages/newhouse/index/index.wxml-->
+<!-- new house list -->
+<import src="../../template/nodata/nodata.wxml"/>
+<view wx:if='{{isDataBack}}' scroll-y="true" bindscrolltolower="nextPage" lower-threshold="1"  class='house_list_box bg_w '>
+  <!--new house item  -->
+  <view class='line_b'></view>
+  <view class='sale_list'>
+    <view class='items pr' wx:for='{{list}}' wx:key='key' wx:for-item="item" wx:for-index="idx" style='height:118px;'>
+      <view class='detele_btn pa text_middle f_12' data-id='{{item.id}}' data-index='{{idx}}' data-type='{{item.data_type}}' catchtap='deleteThis'>
+        删除
+      </view>
+      <view  bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{idx}}" class='bg_w sale_item pa line_b' style='height:118px;{{item.txtStyle}}' catchtap='pageTab' data-status='{{item.status}}' data-type='{{item.data_type}}' data-estatekey='{{item.key}}' data-estateid='{{item.id}}' >
+        <view class='pr sale_img'>
+          <text class='pa img_label' wx:if='{{!!item.status}}'>{{item.status}}</text> 
+          <image src='{{item.upload_id}}'></image> 
+        </view>
+        <view class='sale_content_my'>
+          <view class='oneIn oneIn_1' style='height:22px;'>
+              <text class='sale_name f_16'>{{item.title}}</text> 
+              <text class='f_12 fr fan_type'>{{item.type}}</text>
+          </view>
+          <view>
+              <text class='oneIn oneIn_1 f_12 c999'>{{item.region_name}}—{{item.address}}</text> 
+          </view>
+          <!--新房  -->
+          <view wx:if='{{item.data_type==1}}'>
+            <view class='oneIn oneIn_1'>
+                <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount!=""}}'>{{item.price}}元/<text class='f_12'>㎡</text></text> 
+                <text class='f_12 c666 m_r5'>面积</text> 
+                <text class='f_12 c666 m_r5'>{{item.area}}</text> 
+            </view>
+            <view class='oneIn oneIn_1'>
+                <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount==""}}'>{{item.price}}元/<text class='f_12'>㎡</text></text> 
+            </view>
+            <view  wx:if='{{item.discount!=""}}' class='oneIn oneIn_1 f_12'>
+              <text class='hui_icon'>惠</text>
+              <text class='c_orange'>{{item.discount}}</text>
+            </view>
+          </view>
+          <!-- 二手房 -->
+          <view wx:if='{{item.data_type==3}}'>
+            <view class='oneIn oneIn_1'>
+                <text class='f_14 c999 c_red p_r15 in_b'>{{item.price}}万</text> 
+                <text class='f_12 c666 m_r5'>{{item.model}}</text> 
+                <text class='f_12 c666 m_r5'>{{item.area}}</text> 
+                <text class='f_12 c666 m_r5'>{{item.decoration}}</text> 
+            </view>
+            <view class='oneIn oneIn_1 f_12'>
+              <text class='house_label f_12 bg_fce c_fce'>{{item.tags[0]}}</text>
+              <text class='house_label f_12 bg_ecf c_ecf'>{{item.tags[1]}}</text>
+              <text class='house_label f_12 bg_769 c_769'>{{item.tags[2]}}</text>
+            </view> 
+          </view>
+          <!-- 租房 -->
+          <view wx:if='{{item.data_type==4}}'>
+            <view class='oneIn oneIn_1'>
+                <text class='f_14 c999 c_red p_r15 in_b'>{{item.price}}元/月</text> 
+                <text class='f_12 c666 m_r5'>{{item.model}}</text> 
+                <text class='f_12 c666 m_r5'>{{item.rent_type}}</text> 
+            </view>
+            <view class='oneIn oneIn_1 f_12'>
+              <text class='house_label f_12 bg_fce c_fce'>{{item.tags[0]}}</text>
+              <text class='house_label f_12 bg_ecf c_ecf'>{{item.tags[1]}}</text>
+              <text class='house_label f_12 bg_769 c_769'>{{item.tags[2]}}</text>
+            </view> 
+          </view>
+          
+        </view>
+      </view>
+      
+    </view>
+
+  </view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==1)}}'>上拉加载更多</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==2)}}'>加载中</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==3)}}'>没有更多数据了</view>
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+<template wx:if='{{isNoData}}' is="noData"/>

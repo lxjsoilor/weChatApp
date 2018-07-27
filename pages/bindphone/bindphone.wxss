@@ -1,0 +1,64 @@
+/* pages/bindphone/bindphone.wxss */
+page {
+  background-color: #fff;
+}
+button::after {
+  border: none;
+}
+.phon_form>view {
+  position: relative;
+}
+.phone_text {
+  /* line-height: 58px; */
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  line-height: 55px;
+}
+.phon_form input {
+  padding: 16px 0px 16px 60px;
+  height: 58px;
+}
+.get_code {
+  position: absolute;
+  font-size: 14px;
+  width: 100px;
+  height: 40px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #fff;
+  border: 1px solid #fd7801;
+  color: #fd7801;
+  padding: 0px;
+  line-height: 40px;
+}
+.wait_code {
+  color: #999;
+  border: 1px solid #999;
+}
+
+.bind_sure {
+  margin-top: 40px;
+  border: none;
+  color: #fff !important;
+  background-color: #ccc !important;
+}
+.unbind {
+  background-color: #fd7801 !important;
+}
+input {
+  height: 22px !important;
+  /* line-height: 54px !important; */
+}
+.get_code[disabled] {
+  border: 1px solid #b9b9b9 !important;
+  background-color: #fff !important;
+  color: #b9b9b9 !important;
+}
+.phone_text {
+  left: 0px;
+  top: 0px;
+}

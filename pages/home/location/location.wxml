@@ -1,0 +1,9 @@
+<text class='p_l15 city_title f_14'>当前城市</text>
+<view class='city_list bg_w'>
+  <view catchtap='goBack' hover-class='tab_class' data-url='{{currentSite.site_url}}' data-code='{{currentSite.site_code}}' data-name='{{currentSite.site_name}}' class='city_item line_b p_l15 f_14'>{{currentSite.site_name}}</view>
+</view>
+
+<text class='p_l15 city_title f_14'>选择城市</text>
+<view class='city_list bg_w'>
+  <view wx:for='{{locationList}}' catchtap='selectSite' wx:key='key' wx:for-item='item' hover-class='tab_class' data-url='{{item.site_url}}' data-code='{{item.site_code}}' data-name='{{item.site_name}}' class='city_item line_b p_l15 f_14'>{{item.site_name}}</view>
+</view>

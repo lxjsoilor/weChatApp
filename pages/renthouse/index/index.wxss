@@ -1,0 +1,57 @@
+/* pages/newhouse/index/index.wxss */
+.search_house .house_inp {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding-left: 40px;
+  padding-right: 36px;
+}
+.search_house input {
+  height: 34px;
+}
+.house_inp image {
+  width: 14px;
+  left: 14px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+
+/* 标签样式 */
+.house_label {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 0px 5px;
+  margin-right: 8px;
+  line-height: 20px;
+}
+.bg_fce {
+  background-color: #fcebee;
+}
+.c_fce {
+  color: #e6746a;
+}
+.bg_ecf {
+  background-color: #ecf5ff;
+}
+.c_ecf {
+  color: #67a7ed;
+}
+.bg_769 {
+  background-color: #ebeefc;
+}
+.c_769 {
+  color: #7695e9;
+}
+
+
+button[disabled] {
+  background-color: #cfcfcf !important;
+  color: #fff !important;
+}
+
+.sale_img {
+  height: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

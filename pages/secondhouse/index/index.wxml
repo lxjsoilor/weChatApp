@@ -1,0 +1,118 @@
+<!--pages/newhouse/index/index.wxml-->
+<!-- 新房首页 -->
+<import src="../../template/nodata/nodata.wxml"/>
+<view class='fix_top' catchtouchmove='returnFalse'> 
+  <view class='search_house p_tb5 p_rl10'>
+    <view class='house_inp pr'>
+      <input class='f_14 c666' placeholder='请输入楼盘名' disabled='true' bindtap='toSearch' auto-focus bindinput="searchInp"/>
+      <image class='pa' src='/assets/icon/search_glass.png' mode='widthFix'></image>
+    </view>
+    
+  </view>
+
+  <!-- filter tab -->
+  <view class='filter f_16 pr lh40 bg_w c_666 line_b'>
+    <view class='filter_item {{tab[0]?"":"current"}}' data-tab='0' catchtap='tabFilter'>
+      <view class='oneIn oneIn_1 {{!tab[0]?"c_orange":""}}'>
+        <text>{{tabText[0]}}</text>
+        <text class='triangle {{!tab[0]?"current":""}}'></text>
+      </view>
+      <!-- <image src='/assets/icon/triangle_icon.png' mode='widthFix' class='triangle'> </image> -->
+    </view>
+    <view class='filter_item {{tab[1]?"":"current"}}'  data-tab='1' catchtap='tabFilter'>
+      <view  class='oneIn oneIn_1 {{!tab[1]?"c_orange":""}}'>
+        <text>{{tabText[1]}}</text>
+        <text class='triangle {{!tab[1]?"current":""}}'></text>
+      </view>
+      <!-- <image src='/assets/icon/triangle_icon.png' mode='widthFix' class='triangle'> </image> -->
+    </view>
+    <view class='filter_item {{tab[2]?"":"current"}}'  data-tab='2' catchtap='tabFilter'>
+      <view  class='oneIn oneIn_1 {{!tab[2]?"c_orange":""}}'>
+        <text>{{tabText[2]}}</text>
+        <text class='triangle {{!tab[2]?"current":""}}'></text>
+      </view>
+      <!-- <image src='/assets/icon/triangle_icon.png' mode='widthFix' class='triangle'> </image> -->
+    </view>
+
+    <!-- filter pop -->
+    <!-- area -->
+    <!-- area -->
+    <scroll-view  scroll-y  class='filter_pop lh40 bg_w' hidden='{{tab[0]}}'>
+      <view data-text='区域' data-rid='0' class='line_b p_rl15' catchtap='selectRegion'>
+        <view class='filter_pop_item {{rid==0?"current":""}}'>不限</view>
+      </view>
+      <view class='line_b p_rl15' catchtap='selectRegion' wx:for="{{regionList}}" wx:key="key" wx:for-item="item" hover-class='tab_class' data-text='{{item.region_name}}' data-rid="{{item.region_id}}">
+        <view class='filter_pop_item {{rid==item.region_id?"current":""}}'>{{item.region_name}}</view>
+      </view>
+    </scroll-view>
+    <!-- price -->
+    <view class='filter_pop lh40 bg_w'  hidden='{{tab[1]}}'>
+      <scroll-view scroll-y style='height:205px'>
+      <view  class='line_b p_rl15' wx:for='{{priceList}}' catchtap='selectPrice' wx:key='key' wx:for-item='item' data-text='{{item.value=="不限"?"价格":item.value}}' data-key='{{item.key}}'>
+        <view class='filter_pop_item {{priceid==item.key?"current":""}}'>{{item.value}}</view>
+      </view>
+      </scroll-view>
+      <view class='line_b p_rl15 pr bg_w'>
+        <view class='filter_pop_item defined'>自定义</view>
+        <view class='defined m_r10 f_14'><input type='number' maxlength='5' bindinput='minPriceInp' placeholder='最低价' value='{{minPrice}}'></input></view>
+        <text>-</text>
+        <view class='defined f_14 m_r5'><input type='number' maxlength='5' bindinput='maxPriceInp' placeholder='最高价' value='{{maxPrice}}'></input></view>
+        <view class='lh40 defined'>万</view>
+        <view class='defined f_14' catchtap='selectPriceBtn'><button disabled='{{disabled}}'>确定</button></view>
+      </view>
+    </view> 
+    <!-- type -->
+    <scroll-view scroll-y class='filter_pop lh40 bg_w'  hidden='{{tab[2]}}'>
+      <view class='line_b p_rl15' wx:for='{{typeList}}' wx:key='key' wx:for-item='item' data-key='{{item.key}}' data-text='{{item.value=="不限"?"户型":item.value}}'  catchtap='selectType'>
+        <view class='filter_pop_item {{modelid==item.key?"current":""}}'>{{item.value}}</view>
+      </view>
+    </scroll-view> 
+
+  </view>
+</view> 
+<!-- new house list -->
+<scroll-view  scroll-y="true" bindscrolltolower="nextPage" lower-threshold="1"  class='house_list_box bg_w '>
+  <!--new house item  -->
+  <view class='sale_list'>
+    <view class='sale_item line_b' data-savetype='2' data-saveid='{{item.fang_id}}' wx:for='{{dataList}}' wx:key='key' wx:for-item='item' data-url='/pages/secondhouse/detailhouse/detailhouse?fang_key={{item.fang_key}}' catchtap='pageTab'>
+      <view class='sale_img'>
+        <image src='{{item.upload_id}}' mode='widthFix'></image> 
+      </view>
+      <view class='sale_content'>
+        <view>
+            <text class='sale_name f_16 oneIn oneIn_1'>{{item.fang_name}}</text> 
+        </view>
+        <view>
+            <text class='oneIn oneIn_1 f_12 c999'>{{item.region_name}}—{{item.fang_address}}</text> 
+        </view>
+        <view class='oneIn oneIn_1 max_h21'>
+            <text class='f_14 c999 c_red m_r10 in_b' wx:if='{{item.fang_tags.length!=0}}'>{{item.fang_price}}</text> 
+            <text class='f_12 c666 m_r10'>{{item.fang_model}}</text> 
+            <text class='f_12 c666 m_r10'>{{item.fang_area}}</text> 
+            <text class='f_12 c666 m_r10'>{{item.fang_decoration}}</text> 
+        </view>
+        <view  class='oneIn oneIn_1 max_h21' wx:if='{{item.fang_tags.length==0}}'>
+            <text class='f_14 c999 c_red p_r15 in_b'>{{item.fang_price}}</text> 
+        </view>
+        <view class='oneIn oneIn_1 f_12' wx:if='{{item.fang_tags.length!=0}}'>
+          <text class='house_label f_12 bg_fce c_fce'>{{item.fang_tags[0]}}</text>
+          <text class='house_label f_12 bg_ecf c_ecf'>{{item.fang_tags[1]}}</text>
+          <text class='house_label f_12 bg_769 c_769'>{{item.fang_tags[2]}}</text>
+        </view> 
+      </view>
+    </view>
+
+  </view>
+
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==1)}}'>上拉加载更多</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==2)}}'>加载中</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==3)}}'>没有更多数据了</view>
+</scroll-view>
+<template wx:if='{{isNoData}}' is="noData"/>
+
+<!--遮罩层  -->
+<view class='shade' catchtap='shadeTab' catchtouchmove='returnFalse' hidden='{{shade}}'></view> 
+
+
+
+

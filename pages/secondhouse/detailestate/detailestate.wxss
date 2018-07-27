@@ -1,0 +1,42 @@
+/* pages/secondhouse/detailhouse/detailhouse.wxss */
+
+.detail_name {
+  height: auto;
+}
+.collect_icon {
+  /* position: static; */
+  bottom: 11px;
+}
+
+.detail_col3 {
+  width: 33%;
+  display: inline-block;
+  text-align: center;
+}
+/* .detail_ */
+
+
+.map_box {
+  width: 100%;
+  background-color: #000;
+  height: 150px;
+}
+
+.report_house {
+  color: #2064b2;
+}
+.estate_name {
+  color: #2064b2;
+}
+.type_label {
+  top:-15px;
+  vertical-align:top;
+  font-size: 11px;
+  overflow:hidden;
+  display:inline-block;
+  line-height:14px;
+  margin-top: 16px;
+}
+.read_more {
+  padding: 0px;
+}

@@ -1,0 +1,38 @@
+<view wx:if='{{isDataBack}}'>
+  <!-- <block wx:for='{{imgArr}}' wx:key>
+    <view class='img_box' data-current='{{index}}' catchtap='openSwiper'>
+      <image src='{{item}}'></image>
+    </view>
+  </block> -->
+
+  <view class='p_l15 p_r5 clearfix p_t10'>
+    <block wx:for='{{imgListArr}}' wx:key wx:item='item'>
+      <view wx:if='{{item.firstImg==1}}' class='img_item_type'>{{item.title}}（{{item.imgLength}}）</view>
+      <view wx:if='{{item.imgLength!=0}}' data-current='{{item.imgIndex}}' catchtap='openSwiper' class='img_item'>
+        <image style='{{defeatedImg}}' src="{{item.imgUrl}}"></image>
+      </view>
+    </block>
+  </view>
+  
+</view>
+
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+<view class="swiper_box_bg" hidden='{{isShow}}'  catchtouchmove='returnFalse'  catchtap='openSwiper'>
+  <swiper data-test='fsdf' class='swiper_box' current='{{currentPage}}' bindchange="pageChange" duration="{{duration}}">
+    <block wx:for="{{imgArr}}" wx:key>
+      <swiper-item catchtap='openSwiper' data-fds='fdsf'>
+        <image style='{{defeatedImg}}' src="{{item}}" class="slide-image" width="100%" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <scroll-view scroll-x class='swiper_bar' scroll-left="{{scrollTop}}" bindscroll="bindscrollFn">
+    <view class='swiper_bar_box'>
+      <view wx:for="{{txtImgType}}" wx:key="key" data-page='{{item.page}}' wx:for-item="item" class='swiper_bar_item {{classCurrent[index]?"current":""}}' catchtap='toPage'>
+        <text data-page='{{item.page}}' catchtap='toPage'>{{item.text}}</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='f_15 preview-indicator'>{{currentFangType}} {{currentFangTypePage}}<text class='f_12'>/{{fangTypeAllPage}}</text></view>
+</view>
+

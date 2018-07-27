@@ -1,0 +1,7 @@
+<!--pages/template/nodata/nodata.wxml-->
+<template name="noData">
+  <view class='no_data text_middle' >
+    <image src='/assets/icon/no_data.png' mode='widthFix'></image> 
+    <text class='f_14 c999 lh50'>暂无数据</text>
+  </view>
+</template>

@@ -1,0 +1,121 @@
+<!-- 二手房详情 -->
+
+<view wx:if='{{isDataBack}}'>
+  <view class='detail_box pr'>
+  <!--swiper  -->
+    <swiper  bindchange='changePage'>
+      <swiper-item  wx:for='{{detailData.banners}}' wx:key='key' wx:for-item='item'>
+        <image catchtap='previewBannerFn' data-url='{{item}}' style='width:100%' src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+    <!-- swipe page -->
+    <view class='swiper_page pa f_12'>
+      <view>
+        <text>{{currentPage}}</text><text>/</text><text>{{allPage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail_list f_14'>
+    <view class='bg_w p_rl15'>
+    <!--  -->
+      <view class='bg_w   detail_name line_b'>
+        <view class='lh50 h50'>
+          <view class='max_w50 inline_block'><text class='img_middle f_16 m_r10 oneIn oneIn_1'>{{detailData.estate_name}}</text></view>
+          <text class='img_middle type_label f_12 c_orange'>{{detailData.estate_type}}</text>
+        </view>
+      </view>
+
+      <view class='bg_w pr detail_msg f_12 p_tb15 line_b lh20' data-url='/pages/secondhouse/index/index?estate_id={{detailData.estate_id}}' catchtap='pageTab'>
+        <view>
+          <view>
+            <text class='c999'>售价：</text>
+            <text class='c_orange'>{{detailData.estate_house_range}}</text>
+            <view class='fr p_r20'>
+              <text class='c_orange'>{{detailData.estate_house_count}}</text>
+              <text class='c999'>套在售房源</text>
+            </view>
+            <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+          </view>
+        </view>
+      </view>
+
+      <view class='bg_w pr detail_msg f_12 p_tb15 line_b lh20' data-url='/pages/renthouse/index/index?estate_id={{detailData.estate_id}}' catchtap='pageTab'>
+        <view>
+          <view>
+            <text class='c999'>租金：</text>
+            <text class='c_orange'>{{detailData.estate_rent_range}}</text>
+            <view class='fr p_r20'>
+              <text class='c_orange'>{{detailData.estate_rent_count}}</text>
+              <text class='c999'>套在租房源</text>
+            </view>
+            <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+          </view>
+        </view>
+      </view>
+
+      <view class='bg_w   detail_msg f_12 lh30 p_tb5 p_b15 line_b'>
+        <view>
+          <view class='w50'>
+            <text class='c999'>物业类型：</text>
+            <text>{{detailData.estate_type}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>物业费：</text>
+            <text>{{detailData.estate_type}}</text>
+          </view>
+        </view>
+        <view>
+          <view class='w50'>
+            <text class='c999'>建筑年代：</text>
+            <text>{{detailData.estate_start_year}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>规划面积：</text>
+            <text>{{detailData.estate_land_area}}</text>
+          </view>
+        </view>
+        <view>
+          <view class='w50'>
+            <text class='c999'>产权年限：</text>
+            <text>{{detailData.estate_year}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>规划户数：</text>
+            <text>{{detailData.estate_house_num}}</text>
+          </view>
+        </view>
+        <view>
+          <view>
+            <text class='c999'>物业公司：</text>
+            <text>{{detailData.wuye_company}}</text>
+          </view>
+          <view>
+            <text class='c999'>开发商：</text>
+            <text>{{detailData.estate_developer}}</text>
+          </view>
+        </view>
+      </view>
+
+      
+      
+    <!--  -->
+    </view>
+    
+    <view class='bg_f1' style='height:10px;'></view>
+    <!--最新动态  -->
+    <view class='new_statu' wx:if='{{detailData.estate_introduce!=""}}'>
+      <view class='lh40 bg_w p_rl15 line_b'>小区介绍</view>
+      
+      <view class='bg_w p_rl15 p_b10 pr'>
+        <view catchtap='test' hidden='{{readMore}}' class='point_content oneIn f_12 lh20'>{{detailData.estate_introduce}}</view>
+        <view catchtap='test' hidden='{{!readMore}}' class='point_content oneIn f_12 lh20'>{{detailData.estate_introduce_short}}</view>
+        <view catchtap='changeRead' wx:if='{{showReadMore}}' class='read_more f_12 bg_w text_left'>{{readMore?"阅读更多":"收起"}}</view>
+      </view>
+
+    </view>
+    <view class='bg_f1' style='height:10px;'></view>
+  </view>
+
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>

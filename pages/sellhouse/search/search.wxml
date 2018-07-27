@@ -1,0 +1,25 @@
+
+
+<!--小区搜索  -->
+<view class='search_pop'>
+  <view class='search_house bg_f1'>
+    <view class='house_inp'>
+      <input class='f_14' placeholder='请输入您的小区' focus='{{searchFocus}}' value='{{searchVal}}' bindinput="searchEstate"/>
+      <view class='del_icon_box' catchtap='emptySearch' hidden='{{!searchVal}}'>
+        <image class='del_icon' src='/assets/icon/search_bksp@2X.png' mode='widthFix'></image>
+      </view>
+    </view>
+    <view class='cancel_btn f_14' catchtap='cancelSearch'>取消</view>
+  </view>
+  <view style='margin-top:56px;'>
+    <view class='search_list bg_w'>
+      <view catchtap='selectEstate' class='search_item p_tb10 line_b p_rl15' data-rid='{{item.region_id}}' data-id='{{item.estate_id}}' data-name='{{item.estate_name}}' wx:for='{{searchList}}' wx:key='key' wx:for-item='item'>
+        <view class='f_16'><text wx:for='{{item.estate_name}}' wx:key='key' wx:for-item='val' class='{{val==searchVal?"c_orange":""}}'>{{val}}</text></view>
+        <text class='f_14 c999'>{{item.region_name}}</text>
+      </view>
+      <!-- <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{noSearch}}'>没有找到匹配的小区</view> -->
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{!noSearch}}'>{{searchMore?'请输入搜索关键字':'正在搜索中'}}</view>
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{noSearch}}'>{{hasMore?'没有找到匹配的小区':'没有更多匹配的小区'}}</view>
+    </view>
+  </view>
+</view>

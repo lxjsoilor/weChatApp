@@ -1,0 +1,78 @@
+{
+  "pages":[
+    "pages/home/index/index",
+    "pages/home/impower/impower",
+    "pages/home/location/location",
+    "pages/home/search/search",
+    "pages/recommend/index/index",
+    "pages/recommend/detail/detail",
+    "pages/recommend/detailmore/detailmore",
+    "pages/recommend/housetype/housetype",
+    "pages/recommend/orderhouse/orderhouse",
+    "pages/recommend/estatephoto/estatephoto",
+    "pages/bindphone/bindphone",
+    "pages/newhouse/index/index",
+    "pages/newhouse/search/search",
+    "pages/newhouse/detail/detail",
+    "pages/secondhouse/index/index",
+    "pages/secondhouse/search/search",
+    "pages/secondhouse/detailhouse/detailhouse",
+    "pages/secondhouse/detailestate/detailestate",
+    "pages/renthouse/index/index",
+    "pages/renthouse/search/search",
+    "pages/renthouse/detail/detail",
+    "pages/sellhouse/sell/sell",
+    "pages/sellhouse/search/search",
+    "pages/sellhouse/success/success",
+    "pages/my/index/index",
+    "pages/my/collect/collect",
+    "pages/my/order/order",
+    "pages/my/record/record",
+    "pages/my/request/request",
+    "pages/my/history/history",
+    "pages/my/requestdetail/requestdetail",
+    "pages/template/nodata/nodata",
+    "pages/template/alert/alert",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "汇房网",
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#f1f1f1"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ff9630",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index/index",
+        "text": "房源",
+        "iconPath": "assets/icon/tabBar_fan2@2X.png",
+        "selectedIconPath": "assets/icon/tabBar_fan1@2X.png"
+      },
+      {
+        "pagePath": "pages/recommend/index/index",
+        "text": "推荐",
+        "iconPath": "assets/icon/tabBar_recommend2.png",
+        "selectedIconPath": "assets/icon/tabBar_recommend.png"
+      },
+      {
+        "pagePath": "pages/sellhouse/sell/sell",
+        "text": "卖房",
+        "iconPath": "assets/icon/tabBar_sell2@2X.png",
+        "selectedIconPath": "assets/icon/tabBar_sell1@2X.png"
+      },
+      {
+        "pagePath": "pages/my/index/index",
+        "text": "我的",
+        "iconPath": "assets/icon/tabBar_my2@2X.png",
+        "selectedIconPath": "assets/icon/tabBar_my1@2X.png"
+      }
+    ]
+  }
+}

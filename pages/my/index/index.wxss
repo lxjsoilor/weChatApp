@@ -1,0 +1,57 @@
+/* pages/my/index/index.wxss */
+.my_index {
+  width: 100%;
+  position: relative;
+  font-size: 0px;
+  
+}
+.head_img {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  text-align: center;
+  overflow: hidden;
+}
+.head_img image {
+  width: 60px;
+  height: 60px;
+  margin-top: 30px;
+  border-radius: 50%;
+}
+.head_img .image_ava {
+  width: 60px;
+  height: 60px;
+  margin-top: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left:auto;
+  margin-right:auto;
+}
+.arrow_right {
+  right: 15px;
+  height: 14px;
+}
+
+.login_btn {
+  display: inline-block;
+  background-color: #009944;
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.quit_btn {
+  margin-top: 10px;
+  height: 50px;
+  line-height: 50px;
+  color: #fe0000;
+  font-size: 14px;
+  background-color: #fff;
+  border-bottom: 1px solid #dddddd;
+  border-radius: 0px;
+}

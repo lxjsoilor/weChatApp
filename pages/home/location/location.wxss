@@ -1,0 +1,8 @@
+/* pages/home/location/location.wxss */
+
+.city_title {
+  line-height: 36px;
+}
+.city_item {
+  line-height: 46px;
+}

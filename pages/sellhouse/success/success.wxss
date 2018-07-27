@@ -1,0 +1,20 @@
+/* pages/sellhouse/success/success.wxss */
+page {
+  background-color: #fff;
+}
+.w100 {
+  width: 100%;
+}
+.success_icon image {
+  margin-top: 100px;
+}
+.success_icon button {
+  margin-top: 20px;
+  color: #fff;
+  margin: 20px 30px;
+  background-color: #fd7801;
+  border-radius: 2px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}

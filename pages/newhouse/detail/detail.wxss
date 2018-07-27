@@ -1,0 +1,45 @@
+.collect_icon {
+  bottom: -6px !important;
+}
+
+.active_content::after {
+  content: '';
+}
+.read_more {
+  word-wrap:break-word;
+  padding-left: 0px;
+  color: #4078bc;
+}
+.type_img {
+  height: 667px;
+  background-color: #000;
+}
+.type_img_box {
+  /* height: 220px; */
+  height: 128px;
+  overflow: hidden;
+}
+
+.type_label {
+  top:-15px;
+  vertical-align:top;
+  font-size: 11px;
+  overflow:hidden;
+  display:inline-block;
+  line-height:14px;
+  margin-top: 12px;
+}
+.act_read_more{
+  padding-left: 30px;
+}
+
+swiper {
+  height: 252px;
+}
+swiper image {
+  height: 100%;
+}
+/* .style_bug {
+  margin-top: -1px;
+  margin-left: -1px;
+} */

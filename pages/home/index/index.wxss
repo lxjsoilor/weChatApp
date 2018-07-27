@@ -1,0 +1,132 @@
+/* pages/home/index/index.wxss */
+.banner_box {
+  font-size: 0;
+}
+.banner_box image {
+  width: 100%;
+}
+.tab_box {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+  text-align: center;
+}
+.tab_box .tab_choose {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tab_box image {
+  width: 40%;
+  height: 30px;
+  display: inline-block;
+}
+.tab_box text {
+  line-height: 36px;
+  font-size: 16px;
+  color: #666;
+}
+
+.carousel_box {
+  font-size: 0px;
+}
+.carousel_box image{
+  width: 100%;
+}
+
+/*固定搜索栏  */
+.search_box {
+  padding: 18px 14px 12px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);  
+  z-index: 999;
+  /* transition: 0.5s background-color; */
+}
+.get_bg_w {
+  /* background-color: rgba(255, 255, 255,1);   */
+  border-bottom: 1px solid #ddd;  
+   /* transition: 0.5s border-bottom;  */
+}
+  
+.get_bg_w .search_inp {
+  box-shadow: none !important;
+  border: 1px solid #ddd;  
+  box-sizing: border-box; 
+  /* transition: 0.5s border; */
+  top: -1px;
+  left: -1px;
+}
+.search_box .search_inp {
+  background-color: #fff;
+  height: 34px;
+  border-radius: 17px;
+  position: relative;
+   box-sizing: border-box; 
+  box-shadow: 0px 1px 1px #999;
+}
+.search_inp .location {
+  font-size: 14px;
+  line-height: 34px;
+  padding-right: 10px;
+  padding-left: 10px;
+  /* background-color: #000; */
+  width: 60px;
+  /* padding-left: 24px; */
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+.search_inp .location::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #333;
+}
+.search_inp input {
+  position: absolute;
+  overflow: visible;
+  left: 0px;           
+  top: 0px;
+  margin-left: 120px;
+  width: 74%;
+  font-size: 14px;
+  line-height: 34px;
+  height: 34px;
+}
+.search_inp input::before {
+  content: "";
+  width: 1px;
+  height: 16px;
+  background-color: #ddd; 
+  display: block;
+  left: -34px;
+  position: absolute;
+  bottom: 8px;
+
+}
+.search_inp image {
+  position: absolute;
+  width: 12px;
+  left: 98px;
+  top: 11px;
+}
+
+.sale_img {
+  width: 33% !important;
+}
+.sale_content {
+  width:  calc(100vw - 160px)
+}
+.sale_item {
+  padding: 8px 0px !important;
+}

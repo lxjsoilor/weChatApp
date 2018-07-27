@@ -1,0 +1,163 @@
+<!--pages/my/requestdetail/requestdetail.wxml-->
+<view wx:if='{{isDataBack}}'>
+  <view class='bg_w p_rl15 p_tb10 line_t'>
+    <view>
+      <text class='f_16 lh30 f_w m_r10 img_middle'>{{reqDetail.fang_name}}</text>
+      <text class='f_12  ffe8d5 img_middle'>{{reqDetail.fang_type}}</text>
+    </view>
+    <view class='f_14 c666'>房源编号：{{reqDetail.fang_number}}</view>
+    <view class='f_14 c666 lh30'>委托时间：{{reqDetail.fang_time}}</view>
+  </view>
+  <view class='bg_w m_tb10'>
+    <view class='line_b p_rl15'>
+      <text class='lh46 f_14'>房源信息</text>
+    </view>
+    <view class='bg_w p_rl15 p_tb5 p_b15 detail_msg f_12 lh30'>
+      <view style='height:30px;'>
+        <view class='w50' style='overflow:hidden'>
+          <text class='c999'>区域：</text>
+          <text>{{reqDetail.region_name}}</text>
+        </view>
+        <view class='w50' style='overflow:hidden'>
+          <text class='c999'>类型：</text>
+          <text>{{reqDetail.fang_sale}}</text>
+        </view>
+      </view>
+      <view> 
+        <view class='w50'>
+          <text class='c999'>户型：</text>
+          <text>{{reqDetail.fang_model}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>面积：</text>
+          <text>{{reqDetail.fang_area}}</text>
+        </view>
+      </view>
+      <view>
+        <view class='w50'>
+          <text class='c999'>价格：</text>
+          <text>{{reqDetail.fang_price}}</text>
+        </view>
+        <!-- <view class='w50'>
+          <text class='c999'>楼层：</text>
+          <text>{{reqDetail.estate_park_num}}个</text>
+        </view> -->
+      </view>
+      <!-- <view>
+        <view class='w50'>
+          <text class='c999'>装修：</text>
+          <text>{{reqDetail.estate_plot_ratio}}</text>
+        </view>
+        <view class='w50'>
+          <text class='c999'>朝向：</text>
+          <text>{{reqDetail.estate_green_ratio}}%</text>
+        </view>
+      </view>
+      <view>
+        <view>
+          <text class='c999'>装修：</text>
+          <text>{{reqDetail.estate_floor_area}}㎡</text>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <view class='bg_w'>
+    <view class='line_b p_rl15'>
+      <text class='lh46 f_14'>委托进度</text>
+    </view>
+    <view class='plan_content' >
+      <view class='no_plan text_middle f_14 c999' wx:if='{{!reqDetail.reco_list.length}}'>
+        等待分配服务置业顾问...
+      </view>
+      <view  wx:else='{{!reqDetail.reco_list.length}}'>
+        <view class='bg_w p_rl15 p_tb5 detail_msg f_12 lh30'>
+          <view style='height:30px;'>
+            <view class='' style='overflow:hidden'>
+              <text class='c999'>置业顾问：</text>
+              <text>{{reqDetail.reco_list.name}}</text>
+            </view>
+          </view>
+          <view>
+            <view class=''>
+              <text class='c999'>所属公司：</text>
+              <text>{{reqDetail.reco_list.company_name_zj}}</text>
+            </view>
+          </view>
+          <view>
+            <view class='w50'>
+              <text class='c999'>预约看房人数：</text>
+              <text>{{reqDetail.reco_list.yuekanNum}}人</text>
+            </view>
+            <view class='w50'>
+              <text class='c999'>已到访人数：</text>
+              <text>{{reqDetail.reco_list.daofangNum}}人</text>
+            </view>
+          </view>
+          <view class='line_b'>
+            <view>
+              <text class='c999'>房屋状态：</text>
+              <text>{{reqDetail.reco_list.fang_status_text}}</text>
+            </view>
+          </view>
+          
+
+        </view>
+        <view class='p_tb15' >
+          <image src='{{reqDetail.reco_list.fang_status_im}}' mode='widthFix' style='width:100%;'></image>
+        </view> 
+      </view>
+    </view>
+  </view>
+  <!-- <view class='bg_w m_tb10'>
+    <view class='sell_house_tab f_14 lh40  bg_w'>
+      <view class='w50 text_middle c666 {{isRent?"":"current"}}' catchtap='sellTab'>系统记录</view>
+      <view class='w50 text_middle c666 {{isRent?"current":""}}' catchtap='rentTab'>人工打入记录</view>
+    </view>
+    <view class='record_content'>
+      <view class='p_tb15'>
+        <view class='record_item w20 text_right'>
+          <view class='f_14 c999 status_current'>12-15</view>
+          <view class='f_10 c999 status_current'>11:07</view>
+        </view>
+        <view class='record_item status pr'>
+          <image src='/assets/icon/current_status@2X.png' mode='widthFix'></image>
+        </view>
+        <view class='record_item'>
+          <view class='f_14 c999 status_current '>客户已下定</view>
+          <view class='f_12 c999 status_current'>审核人：李秋燕</view>
+        </view>
+      </view>
+      <view class='p_tb15'>
+        <view class='record_item w20 pr text_right path'>
+          <view class='f_14 c999'>12-15</view>
+          <view class='f_10 c999'>11:07</view>
+        </view>
+        <view class='record_item status pr'>
+          <image src='/assets/icon/statused@2X.png' mode='widthFix'></image>
+        </view>
+        <view class='record_item'>
+          <view class='f_14 c999 '>客户已到访</view>
+          <view class='f_12 c999'>审核人：李秋燕</view>
+        </view>
+      </view>
+      <view class='p_tb15'>
+        <view class='record_item w20 pr text_right path'>
+          <view class='f_14 c999'>12-15</view>
+          <view class='f_10 c999'>11:07</view>
+        </view>
+        <view class='record_item status pr'>
+          <image src='/assets/icon/statused@2X.png' mode='widthFix'></image>
+        </view>
+        <view class='record_item'>
+          <view class='f_14 c999 '>客户已下定</view>
+          <view class='f_12 c999'>审核人：李秋燕</view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <view class='bg_w p_5 relation_box'>
+    <button class='relation_btn' catchtap='relationAgent'>联系经纪人</button>
+  </view>
+</view>
+
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>

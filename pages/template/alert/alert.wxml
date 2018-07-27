@@ -1,0 +1,17 @@
+<!--pages/template/alert/alert.wxml-->
+<!-- alert名弹出框  -->
+
+<template name='alertTpl'>
+  <view class='shade' catchtouchmove='returnFalse'>
+    <view class="alert_box">
+      <view style='height:117px'>
+        <image class='alert_icon' src='{{img}}' mode='widthFix' style="width: 56px;"></image>
+        <text class='alert_title'>{{title}}</text>
+        <text class="alert_main">{{content}}</text>
+      </view>
+      <view class='alert_btn' catchtap='sureBtn'>
+        <text class='c333 f_16'>我知道了</text>
+      </view>
+    </view>
+  </view>
+</template>

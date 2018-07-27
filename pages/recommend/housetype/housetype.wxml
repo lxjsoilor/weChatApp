@@ -1,0 +1,104 @@
+<!-- 新房详情 -->
+<import src="../../template/alert/alert.wxml"/>
+<view wx:if='{{isDataBack}}'>
+  <view class='detail_box pr'>
+  <!--swiper  -->
+      <image  catchtap='previewBannerFn' data-url='{{detailData.upload_url}}' style='width:100%;{{defeatedImg}}' src="{{detailData.upload_url}}" class="slide-image" />
+  </view>
+
+  <view class='detail_list f_14'>
+    <view class='bg_w p_rl15  detail_name line_b p_t15 p_b15 pr'>
+      <view class='f_15'>{{detailData.title}}</view>
+      <view class='p_t10 f_15 c666'>所属楼盘  {{detailData.estate_name}}</view>
+      <view class='pa c_orange house_type_price'>约{{detailData.housetype_total}}万</view>
+    </view>
+    
+    <view class='bg_w detail_msg f_13 lh40 c666'>
+      <view class='line_b p_rl15' style='height:40px;'>
+        <view class='w100' style='overflow:hidden'>
+          <text>物业类型</text>
+          <text class='fr'>{{detailData.housetype_type}}</text>
+        </view>
+      </view>
+      <view class='line_b p_rl15' style='height:40px;'>
+        <view class='w100' style='overflow:hidden'>
+          <text>装修情况</text>
+          <text class='fr'>{{detailData.housetype_type}}</text>
+        </view>
+      </view>
+      <view class='line_b p_rl15' style='height:40px;'>
+        <view class='w100' style='overflow:hidden'>
+          <text>均价</text>
+          <text class='fr'>{{detailData.housetype_price}}</text>
+        </view>
+      </view>
+      <view class='line_b p_rl15' style='height:40px;'>
+        <view class='w100' style='overflow:hidden'>
+          <text>数量</text>
+          <text class='fr'>{{detailData.totals}}</text>
+        </view>
+      </view>
+    </view>   
+  </view>
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+<!-- alert名弹出框  -->
+<!-- <view class='shade' catchtouchmove='returnFalse'>
+  <view class="alert_box">
+    <view style='height:117px'>
+      <image class='alert_icon' src='{{apply.img}}' mode='widthFix' style="width: 56px;"></image>
+      <text class='alert_title'>{{apply.title}}!</text>
+      <text class="alert_main">{{apply.content}}</text>
+    </view>
+    <view class='alert_btn' catchtap='sureBtn'>
+      <text class='c333 f_16'>我知道了</text>
+    </view>
+  </view>
+</view> -->
+<template wx:if='{{alertPop}}' is="alertTpl" data='{{...alert}}'/>
+
+<!-- 报名弹出   -->
+<view class='shade' hidden='{{applyPop}}' catchtouchmove='returnFalse'>
+  <view class="apply_box p_rl15 pr" style='height:226px;'>
+    <view class='c_orange lh50 text_middle'>活动报名</view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_name@2X.png' class='pa apply_box_img' mode='widthFix' style='width:16px;'></image>
+      <input type='text' maxlength='5' class='f_14 p_tb10 p_l25' focus="{{applFocus}}" value='{{applyName}}' bindinput='applyNameFn' placeholder='请输入姓名'></input>
+    </view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_phone@2X.png' class='pa apply_box_img' mode='widthFix' style='width:14px;'></image>
+      <input type='number' maxlength='11' class='f_14 p_tb10 p_l25' bindinput='applyPhoneFn' value='{{applyPhone}}' placeholder='请输入手机号'></input>
+    </view>
+    <button class='apply_btn m_t20' disabled='{{applyActDisable}}' catchtap='putIn'>提交</button>
+    <!--close  -->
+    <view class='apply_close pa' catchtap='closeApply'>
+      <image src='/assets/icon/apply_close@2X.png' mode='widthFix' style='width:26px;'></image>
+    </view>
+  </view>
+</view>
+<!-- 预约看房 -->
+<view class='shade' hidden='{{orderPop}}' catchtouchmove='returnFalse'>
+  <view class="apply_box p_rl15 pr">
+    <view class='c_orange lh50 text_middle'>预约看房</view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_name@2X.png' class='pa apply_box_img' mode='widthFix' style='width:16px;'></image>
+      <input type='text' maxlength='5' class='f_14 p_tb10 p_l25' placeholder-class='style_bug' focus="{{orderFocus}}" value='{{orderName}}' bindinput='orderNameFn' placeholder='请输入姓名'></input>
+    </view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_phone@2X.png' class='pa apply_box_img' mode='widthFix' style='width:14px;'></image>
+      <input type='number' maxlength='11' class='f_14 p_tb10 p_l25' value='{{orderPhone}}' bindinput='orderPhoneFn' placeholder='请输入手机号'></input>
+    </view>
+    <view class='lh40 f_12 c666'>提交信息后会有专人通过电话联系您</view>
+    <button class='apply_btn m_t5' disabled='{{applyDisable}}' catchtap='orderSureBtn'>提交</button>
+    <!--close  -->
+    <view class='apply_close pa' catchtap='closeApply'>
+      <image src='/assets/icon/apply_close@2X.png' mode='widthFix' style='width:26px;'></image>
+    </view>
+  </view>
+</view>
+<!-- 收藏  -->
+<view class='collect_pop text_middle' hidden='{{toastShow}}'>
+   <image src='{{collectPop.img}}' mode='widthFix'></image>
+   <view class='cfff f_16'>{{collectPop.text}}</view>
+</view>

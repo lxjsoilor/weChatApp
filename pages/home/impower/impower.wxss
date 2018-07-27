@@ -1,0 +1,57 @@
+/* pages/home/impower/impower.wxss */
+.impower_bg image{
+  width: 52px;
+  height: 52px;
+}
+.impower_bg {
+  padding-top: 75px;
+}
+.impower_bg .title {
+  padding-top: 25px;
+}
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #ffffff;
+}
+.impower_bg .title2 {
+  padding-top: 125px;
+}
+.impower_bg button {
+  margin-top: 30px;
+  width: 77%;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+}
+.to_home_btn {
+  position: fixed;
+  right: 0px;
+  border: 1px solid #fd7801;
+  height: 35px;
+  top: 430px;
+  width: 75px;
+  font-size: 14px;
+  border-radius: 100px 0px 0px 100px;
+  border-right: none;
+  text-align: center;
+  color: #fd7801;
+  line-height: 34px;
+  vertical-align: middle;
+   background-color: rgba(255,255,255,0.4); 
+  transition: 0.4s width;
+  
+
+}
+.to_home_btn .home_icon {
+  width: 14px;
+  height: 13px;
+  background-size: cover;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.to_home_btn_hover {
+  width: 100px;
+}

@@ -1,0 +1,11 @@
+
+<view class='bg_w impower_bg text_middle'>
+  <image src='/assets/icon/huifang_logo.png'></image>
+  <view class='title f_15 c666'>真房，好房，上汇房</view>
+  <view class='title2 c333 f_15'>马上微信授权赚取佣金</view>
+  <button type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" size='mini'>微信授权</button>
+</view>
+<view style='top:{{toHomeBtnFix}}px' class='to_home_btn' hover-class='to_home_btn_hover' bindtouchstart='touchStart' catchtouchmove="touchMove" catchtap='pageTab'>
+  <image class='home_icon' src='/assets/icon/to_home_icon.png'></image>
+  主页
+</view>

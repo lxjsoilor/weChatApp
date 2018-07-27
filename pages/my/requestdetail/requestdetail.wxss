@@ -1,0 +1,60 @@
+/* pages/my/requestdetail/requestdetail.wxss */
+.line_t {
+  border-top: 1px solid #eee;
+}
+.plan_content {
+  min-height: 154px;
+}
+.plan_content .no_plan {
+  min-height: 154px;
+  line-height: 154px;
+}
+.sell_house_tab .current{
+  color: #fd7801 !important;
+  border-bottom: 2px solid #fd7801;
+}
+.w20 {
+  width: 20%;
+}
+.record_content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.record_item {
+  display: inline-block;
+}
+.status {
+  overflow: hidden;
+  padding-top: 2px;
+  width: 36px;
+  height: 33px;
+  text-align: center;
+   z-index: 999; 
+}
+.record_item image {
+  width: 18px;
+}
+.record_content .status_current {
+  color: #fd7801 !important;
+}
+.path::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 1px;
+  height: 68px;
+  background-color: #eee;
+  right: -18px;
+  top: -49px;
+}
+.relation_btn {
+  font-size: 16px;
+  color: #fff;
+  background-color: #fd7801;
+}
+.relation_box {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+}

@@ -1,0 +1,93 @@
+<!-- 小程序首页 -->
+<import src="../../template/nodata/nodata.wxml"/>
+
+<view>
+  <!-- fix search -->
+  <view class='search_box {{bgW}}' style='{{gradual}}'>
+    <view class='search_inp'>
+      <text bindtap='toTabCity' class='location'>{{currentSite}}</text>
+      <image src='/assets/icon/search_glass.png' mode='widthFix'></image>
+      <input placeholder="请输入楼盘或小区" disabled='true' focus="{{focus}}" bindtap='toSearch'/>
+    </view>
+  </view>
+  <!--banner  -->
+  <view class='banner_box'>
+    <image src='/assets/banner/home_banner.png' mode='widthFix'></image>
+    
+  </view>
+  <!-- tab -->
+  <view class='p_rl30 p_t10 bg_w'>
+    <view class='tab_box  c666'>
+      <view class='tab_choose new_house' data-url="/pages/newhouse/index/index" catchtap='pageTab'>
+        <image src='/assets/icon/new_house@2X.png' mode='widthFix'></image>
+        <text class='f_14'>新房</text>
+      </view>
+      <view class='tab_choose new_house' data-url="/pages/secondhouse/index/index" catchtap='pageTab'>
+        <image src='/assets/icon/second_house@2X.png' mode='widthFix'></image>
+        <text class='f_14'>二手房</text>
+      </view>
+      <view class='tab_choose new_house' data-url="/pages/renthouse/index/index" catchtap='pageTab'>
+        <image src='/assets/icon/rent_house@2X.png' mode='widthFix'></image>
+        <text class='f_14'>租房</text>
+      </view>
+    </view>
+  </view>
+  <!--carousel banner  -->
+  <view class='carousel_box m_tb10'>
+    <view style='{{imgHeight}}'>
+       <!-- <image src='/assets/banner/home_banner2.png' mode='widthFix'></image>  -->
+       <swiper wx:if='{{isMoreAdv}}'  indicator-dots='true' indicator-active-color='#fd7801' indicator-color='#e0e0e0'  style='{{imgHeight}}'>
+        <swiper-item wx:for='{{advSlider}}' wx:for-item='item' wx:key='key' style='{{imgHeight}}' catchtap='toSellHouse'>
+          <!-- <image  style='width:100%;height:100%;' src="/assets/banner/home_banner2.png" class="" /> -->
+          <image  style='width:100%;height:100%;' src="{{item.img}}" class="" />
+        </swiper-item>
+      </swiper> 
+      <swiper wx:if='{{!isMoreAdv}}' indicator-active-color='#fd7801' indicator-color='#e0e0e0'  style='{{imgHeight}}'>
+        <swiper-item wx:for='{{advSlider}}' wx:for-item='item' wx:key='key' style='{{imgHeight}}' catchtap='toSellHouse'>
+          <!-- <image  style='width:100%;height:100%;' src="/assets/banner/home_banner2.png" class="" /> -->
+          <image  style='width:100%;height:100%;' src="{{item.img}}" class="" />
+        </swiper-item>
+      </swiper> 
+    </view>
+  </view>
+  <!--hot sale  -->
+  <view class='bg_w p_rl15 p_t5'>
+    <view class='line_b'>
+      <text class='f_18 c333 lh40' >热卖楼盘</text>
+    </view>
+    <view hidden='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+    <!-- hot sale list -->
+     <view class='sale_list'>
+      <view  data-url='/pages/newhouse/detail/detail?estate_key={{item.estate_key}}&estate_id={{item.estate_id}}' data-savetype='1' data-saveid='{{item.estate_id}}' catchtap='pageTab' wx:for="{{dataList}}" wx:key="key" wx:for-item="item"  class='sale_item line_b'>
+        <view class='sale_img'>
+          <view>
+            <image src='{{item.upload_id}}' mode='widthFix'></image> 
+          </view>
+        </view>
+        <view  class='sale_content'>
+          <view>
+             <text class='sale_name f_16 oneIn oneIn_1'>{{item.estate_name}}</text> 
+          </view>
+          <view>
+             <text class='oneIn oneIn_1 f_12 c999'>{{item.region_name}}—{{item.estate_address}}</text> 
+          </view>
+          <view class='oneIn oneIn_1 max_h21'>
+             <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount!=""}}'>{{item.estate_price}}</text> 
+             <text class='f_12 c666'>面积  {{item.estate_area}}</text> 
+          </view>
+          <view class='oneIn oneIn_1 max_h21'>
+             <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount==""}}'>{{item.estate_price}}</text> 
+          </view>
+          <view  wx:if='{{item.discount!=""}}' class='oneIn oneIn_1 f_12'>
+            <text class='hui_icon'>惠</text>
+            <text class='c_orange'>{{item.discount}}</text>
+          </view> 
+        </view>
+      </view>
+
+    </view> 
+    <template wx:if='{{isNoData}}' is="noData"/>
+  </view>
+</view>
+
+<view class='tab_bar_border'></view>

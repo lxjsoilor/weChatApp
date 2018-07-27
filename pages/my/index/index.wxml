@@ -1,0 +1,53 @@
+<!--pages/my/index/index.wxml-->
+<view class='my_index'>
+  <image src='/assets/icon/head_bg.png' mode='widthFix' style='width:100%;'></image>
+  <view class='head_img'>
+    <view class='image_ava'>
+      <open-data type="userAvatarUrl"></open-data> 
+    </view>
+    <view hidden='{{false}}'>
+       <view class='f_16 lh20 p_t5'>
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+       </view>  
+      <view class='f_16'>{{userPhone}}</view> 
+    </view>
+    <view hidden='{{true}}'>
+      <view class='f_16'>您还没登录哦~</view>
+      <view class='f_16 login_btn'>手机号登录</view>
+    </view>
+  </view>
+</view>
+<!--  -->
+
+<view class='my_list bg_w f_14'>
+  <view class='lh50 line_b pr p_rl15' data-url="/pages/my/collect/collect" catchtap='pageTab'>
+    <text>我的收藏</text>
+    <text class='lh50 fr f_12 c999 p_r15'>{{numCollect}}</text>
+    <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+  </view>
+  <view class='lh50 line_b pr p_rl15' data-url="/pages/my/order/order" catchtap='pageTab'>
+    <text>我的预约</text>
+    <text class='lh50 fr f_12 c999 p_r15'>{{numOrder}}</text>
+    <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+  </view>
+  <view class='lh50 line_b pr p_rl15' data-url="/pages/my/record/record" catchtap='pageTab'>
+    <text>看房记录</text>
+    <text class='lh50 fr f_12 c999 p_r15'>{{numRecord}}</text>
+    <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+  </view>
+  <view class='lh50 line_b pr p_rl15' data-url="/pages/my/request/request" catchtap='pageTab'>
+    <text>我的委托</text>
+    <text class='lh50 fr f_12 c999 p_r15'>{{numRequest}}</text>
+    <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+  </view>
+  <view class='lh50 line_b pr p_rl15' data-url="/pages/my/history/history" catchtap='pageTab'>
+    <text>浏览记录</text>
+    <text class='lh50 fr f_12 c999 p_r15'>{{numHistory}}</text>
+    <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+  </view>
+</view>
+<!-- <view>
+  <button class='quit_btn'>退出登录</button>
+</view> -->
+
+<view class='tab_bar_border'></view>

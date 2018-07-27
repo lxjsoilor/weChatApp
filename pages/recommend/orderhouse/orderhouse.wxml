@@ -1,0 +1,49 @@
+<!-- 二手房详情 -->
+
+<view wx:if='{{isDataBack}}'>
+  <!-- 经纪人名片 -->
+  <view class='order_agent_card bg_w'>
+    <view class='p_tb15 p_l15'>
+      <view class='order_agent in_b img_middle'>
+        <image class='' src='/assets/icon/default_atv.png'></image>
+      </view>
+      <view class='in_b img_middle p_l20 f_15'>
+        <view class='lh32'>置业顾问：戴永民</view>
+        <view class='lh32'>联系方式：18666778869</view>
+      </view>
+    </view>
+  </view>
+  <!-- 小标题 -->
+  <view class='f_13 c333 text_middle'>提交后您的置业顾问会与您联系看房时间</view>
+  <!-- 预约看房提交 -->
+  <view class='order_agent_card order_agent_form bg_w'>
+    <view class='line_b f_14 p_l15'>
+      <text>姓名</text>
+      <input class='in_b' bindinput='inputName' maxlength='5' placeholder-class='c999' placeholder='请输入您的姓名'></input>
+    </view>
+    <view class='line_b f_14 p_l15'>
+      <text>性别</text>
+      <view class='in_b gender_radio'>
+        <radio-group class="radio-group" bindchange="radioChange">
+            <radio class="radio" checked="{{genderItme[0]}}">
+                <text class='p_l10 f_20'> 男</text>
+            </radio>
+             <radio class="radio p_l10" checked="{{genderItme[1]}}">
+                <text class='p_l10 f_20'> 女</text>
+            </radio>
+        </radio-group>     
+      </view>
+    </view>
+    <view class='line_b f_14 p_l15'>
+      <text>电话</text>
+      <input type='number' bindinput='inputPhone' maxlength='11' class='in_b' placeholder-class='c999' placeholder='请输入您的手机号'></input>
+    </view>
+  </view>
+
+  <!--按钮提交  -->
+  <view class='order_agent_btn p_rl20'>
+    <button disabled='{{canPostBool}}' catchtap='orderBtn' size='default' type=''>提交</button>
+  </view>
+
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>

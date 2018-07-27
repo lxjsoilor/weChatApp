@@ -1,0 +1,103 @@
+<!-- 二手房详情 -->
+
+<view wx:if='{{isDataBack}}'>
+  <view class='detail_list f_14'>
+    <view class='bg_w'>
+      <view class='detail_more_title lh45 p_l15 f_16'>
+        <view>基本信息</view>
+      </view>
+      <view class='p_tb10'>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>参考均价：</text>
+          <text>{{detailData.project_price}}元/㎡</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>物业类型：</text>
+          <text>{{detailData.estate_wu_type}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>开盘时间：</text>
+          <text>{{detailData.estate_start_time}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>交房时间：</text>
+          <text>{{detailData.estate_pay_time }}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>售楼处电话：</text>
+          <text>{{detailData.estate_tel}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>售楼处地址：</text>
+          <text>{{detailData.estate_sale_addr}}</text>
+        </view>
+  
+      </view>
+    </view>
+
+    <view class='bg_w m_t8'>
+      <view class='detail_more_title lh45 p_l15 f_16'>
+        <view>建筑规划</view>
+      </view>
+      <view class='p_tb10'>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>建筑形式：</text>
+          <text>{{detailData.estate_building_style}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>装修状况：</text>
+          <text>{{detailData.estate_decoration}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>规划面积：</text>
+          <text>{{detailData.estate_land_area}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>建筑面积：</text>
+          <text>{{detailData.estate_floor_area}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>容  积  率：</text>
+          <text>{{detailData.estate_plot_ratio}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>绿  化  率：</text>
+          <text>{{detailData.estate_green_ratio}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>开  发  商：</text>
+          <text>{{detailData.developer_company_name}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>产权年限：</text>
+          <text>{{detailData.estate_year}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>规划户数：</text>
+          <text>{{detailData.project_total}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='bg_w m_t8'>
+      <view class='detail_more_title lh45 p_l15 f_16'>
+        <view>物业信息</view>
+      </view>
+      <view class='p_tb10'>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>物业公司：</text>
+          <text>{{detailData.clean_company_name}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>物  业  费：</text>
+          <text>{{detailData.estate_clean_fee}}</text>
+        </view>
+        <view class='p_rl15 lh28'>
+          <text class='c888'>车  位  数：</text>
+          <text>{{detailData.estate_park_num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>

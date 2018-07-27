@@ -1,0 +1,63 @@
+<!--pages/newhouse/index/index.wxml-->
+<!-- new house list -->
+<import src="../../template/nodata/nodata.wxml"/>
+<view wx:if='{{isDataBack}}' scroll-y="true" bindscrolltolower="nextPage" lower-threshold="1"  class='house_list_box bg_w '>
+  <!--new house item  -->
+  <view class='line_b'></view>
+  <view class='sale_list'>
+    <view class='items pr' style='height:118px;' wx:for='{{list}}' wx:key='key' wx:for-item='item' wx:for-index='idx'>
+      <view class='detele_btn pa text_middle f_12' data-index='{{idx}}' catchtap='deleteRecoFang' data-id='{{item.client_id}}'>
+        删除
+      </view>
+
+      <view  bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{idx}}" class='bg_w sale_item pa line_b' style='height:118px;{{item.txtStyle}}' catchtap='pageTab' data-status='{{item.status}}' data-type='{{item.fang_type}}' data-estatekey='{{item.estate_key}}' data-fankey='{{item.fang_key}}' data-estateid='{{item.estate_id}}'>
+        <view class='pr sale_img'>
+          <text class='pa img_label' wx:if='{{!!item.status}}'>{{item.status}}</text> 
+          <image src='{{item.upload_id}}'></image> 
+        </view>
+        <view class='sale_content_my'>
+          <view class='oneIn oneIn_1 max_h21_'>
+              <text class='sale_name f_16'>{{item.fang_name}}({{item.region_name}})</text> 
+              <!-- <text class='f_12 fr fan_type'>{{item.fang_type}}</text> -->
+              <!-- 推荐项目 -->
+              <text class='f_12 fr fan_type recommend'>推荐项目</text>
+          </view>
+          <!--新房  -->
+          <view class='oneIn oneIn_1' wx:if='{{item.fang_type=="新房"}}'>
+              <text class='f_14 c999 c_red p_r10 in_b' wx:if='{{true}}'>{{item.fang_price}}元/<text class='f_12'>㎡</text></text> 
+              <text class='f_12 c333 m_r5'>{{item.fang_area_range}}</text> 
+          </view>
+          <!-- 二手房 -->
+          <view class='oneIn oneIn_1' wx:if='{{item.fang_type=="二手房"}}'>
+              <text class='f_14 c999 c_red p_r10 in_b' wx:if='{{true}}'>{{item.fang_price}}万</text> 
+              <text class='f_12 c333 m_r5'>{{item.fang_model}}</text> 
+              <text class='f_12 c333 m_r5'>{{item.fang_area}}</text> 
+          </view>
+          <!-- 租房 -->
+          <view class='oneIn oneIn_1' wx:if='{{item.fang_type=="租房"}}'>
+              <text class='f_14 c999 c_red p_r10 in_b' wx:if='{{true}}'>{{item.fang_price}}</text> 
+              <text class='f_12 c333 m_r5'>{{item.fang_model}}</text> 
+              <text class='f_12 c333 m_r5'>{{item.fang_rent_type}}</text> 
+          </view>
+          
+          <view class='oneIn oneIn_1 lh20 c666 f_12'>
+            预约人：{{item.client_name}}({{item.client_mobile}})
+          </view>
+          <view class='oneIn oneIn_1 lh20 c666 f_12'>
+            预约时间：{{item.create_time}}
+          </view> 
+        </view>
+      </view>
+      
+    </view>
+
+  </view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==1)}}'>上拉加载更多</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==2)}}'>加载中</view>
+  <view class='text_middle f_14 c999 lh30' hidden='{{!(loadMore==3)}}'>没有更多数据了</view>
+</view>
+
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+<template wx:if='{{isNoData}}' is="noData"/>
+

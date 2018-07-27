@@ -1,0 +1,178 @@
+<!-- 二手房详情 -->
+<import src="../../template/alert/alert.wxml"/>
+
+<view wx:if='{{isDataBack}}'>
+  <view class='detail_box pr'>
+  <!--swiper  -->
+    <swiper  bindchange='changePage'>
+      <swiper-item wx:for='{{detailData.scroll_imgs}}' wx:key='key' wx:for-item='item'>
+        <image catchtap='previewBannerFn' data-url='{{item}}' style='width:100%' src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+    <!-- swipe page -->
+    <view class='swiper_page pa f_12'>
+      <view>
+        <text>{{currentPage}}</text><text>/</text><text>{{allPage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail_list f_14'>
+    <view class='bg_w p_rl15'>
+    <!--  -->
+      <view class='bg_w detail_name line_b'>
+        <view class='lh50 h50'>
+          <view class='max_w50 inline_block'><text class='img_middle f_16 m_r10 oneIn oneIn_1'>{{detailData.fang_name}}</text></view>
+          <text class='img_middle type_label f_12 c_orange'>{{detailData.fang_type}}</text>
+        </view>
+        <view class='f_14 pr'>
+          <view class='collect_icon pa text_middle' catchtap='toCollect' style='width:100px;'>
+            <image src='{{collectPop.img}}' class='m_r5 img_middle' mode='widthFix' style='width:20px;'></image>
+            <text class='f_12 c999' class='c999 img_middle'>{{collectPop.btnText}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='bg_w   detail_row3 lh20 p_tb10 line_b'>
+        <view class='detail_col3 line_r'>
+          <view class='c_orange'>{{detailData.fang_price}}</view>
+          <view class='c666'>租金</view>
+        </view>
+        <view class='detail_col3 line_r'>
+          <view class='c_orange'>{{detailData.fang_model}}</view>
+          <view class='c666'>户型</view>
+        </view>
+        <view class='detail_col3'>
+          <view class='c_orange'>{{detailData.fang_area}}</view>
+          <view class='c666'>面积</view>
+        </view>
+      </view>
+      <view class='bg_w   detail_msg f_12 lh30 p_tb5'>
+        <view>
+          <view class='w50'>
+            <text class='c999'>楼层：</text>
+            <text>{{detailData.fang_floor}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>类型：</text>
+            <text>{{detailData.fang_type}}</text>
+          </view>
+        </view>
+        <view>
+          <view class='w50'>
+            <text class='c999'>装修：</text>
+            <text>{{detailData.fang_decoration}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>租赁方式：</text>
+            <text>{{detailData.fang_rent_type}}</text>
+          </view>
+        </view>
+        <view>
+          <view class='w50'>
+            <text class='c999'>年代：</text>
+            <text>{{detailData.fang_build_year}}</text>
+          </view>
+          <view class='w50'>
+            <text class='c999'>支付方式：</text>
+            <text>{{detailData.fang_pay_type}}</text>
+          </view>
+        </view>
+      </view>
+    <!--  -->
+    </view>
+    <view class='bg_f1 ' style='height:10px;'></view>
+    <!--配套设施  -->
+
+    <view class='f_12 clearfix bg_w'>
+      <view class='lh46 bg_w p_rl15 line_b m_b10'>配套设施</view>
+      <view class='detail_row3 bg_w lh30 text_left p_rl15' wx:for='{{detailData.fang_supporting}}' wx:for-index='idx' wx:key='key' wx:for-item='val'>
+        <view class='detail_col3 text_left fl' style='height:32px;'>
+          <image src='/assets/icon/{{detailData.fang_supporting_img[idx]}}.png' class='img_middle m_r5' mode='widthFix' style='width:16px;max-height:32px;'></image>
+          <text class='img_middle'>{{val}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='bg_w' style='height:10px;'></view>
+    
+    <view class='bg_f1' style='height:10px;'></view>
+    <!--最新动态  -->
+    <view class='new_statu'>
+      <view class='lh46 bg_w p_rl15 line_b'>小区信息</view>
+      <view class='bg_w p_rl15 detail_msg f_12 lh30 p_tb5 line_b'>
+        <view class='pr' data-url='/pages/secondhouse/detailestate/detailestate?estate_key={{detailData.estate_key}}' catchtap='pageTab'>
+          <text class='c999'>小区：</text>
+          <text class='estate_name'>{{detailData.estate_name}}</text>
+          <image src='/assets/icon/estate_tab@2X.png' mode='widthFix' class='arrow_right'></image>
+        </view>
+        <view>
+          <text class='c999'>区域：</text>
+          <text>{{detailData.region_name}}</text>
+        </view>
+        <view>
+          <text class='c999'>地址：</text>
+          <text>{{detailData.estate_address}}</text>
+        </view>
+        <view class='map_box'>
+          <image src='{{mapSrc}}' mode='center' style=''></image>
+        </view>
+        <view>
+          <image src='/assets/icon/traffic_icon@2X.png' mode='widthFix' style='width:14px' class='img_middle m_r5'></image>
+          <text class='c999 img_middle'>交通：</text>
+          <text class='img_middle'>{{aroundInfo.busStationCount||0}}个公交站</text>
+        </view>
+        <view>
+          <image src='/assets/icon/business_icon@2X.png' mode='widthFix' style='width:14px' class='img_middle m_r5'></image>
+          <text class='c999 img_middle'>商业：</text>
+          <text class='img_middle'>{{aroundInfo.bankStationJson||0}}间银行，{{aroundInfo.mallStationJson||0}}家超市，{{aroundInfo.restaurantStationJson||0}}餐厅</text>
+        </view>
+        <view>
+          <image src='/assets/icon/school_icon@2X.png' mode='widthFix' style='width:14px' class='img_middle m_r5'></image>
+          <text class='c999 img_middle'>学校：</text>
+          <text class='img_middle'>{{aroundInfo.highSchoolStationJson||0}}间中学，{{aroundInfo.primarySchoolStationJson||0}}间小学，{{aroundInfo.kindergartenStationJson||0}}所幼儿园</text>
+        </view>
+        <view>
+          <image src='/assets/icon/hospital_icon@2X.png' mode='widthFix' style='width:14px' class='img_middle m_r5'></image>
+          <text class='c999 img_middle'>医院：</text>
+          <text class='img_middle'>{{aroundInfo.hospitalStationJson||0}}间医院</text>
+        </view>
+      </view>
+
+    </view>
+    <view class='bg_f1 p_rl15' style='height:40px;'>
+      <view catchtap='reportThis'>
+        <image class='img_middle m_r5' src='/assets/icon/fan_sham@2X.png' mode='widthFix' style='width:16px;'></image>
+        <text class='f_12 c999 img_middle lh40'>该房源虚假！</text>
+        <text class='f_12 fr lh40 report_house'>举报该房源</text>
+      </view>
+    </view>
+    
+    <button class='subscribe fixed' catchtap='orderBtn'>预约看房</button>
+    <view class='temp_btn'></view>
+  </view>
+</view>
+<view wx:else='{{isDataBack}}' class='lh50 f_14 c999 text_middle'>数据加载中...</view>
+
+
+<!-- alert名弹出框  -->
+<template wx:if='{{alertPop}}' is="alertTpl" data='{{...alert}}'/>
+
+<!-- 预约看房 -->
+<view class='shade' hidden='{{orderPop}}' catchtouchmove='returnFalse'>
+  <view class="apply_box p_rl15 pr">
+    <view class='c_orange lh50 text_middle'>预约看房</view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_name@2X.png' class='pa apply_box_img' mode='widthFix' style='width:16px;'></image>
+      <input type='text' maxlength='5' class='f_14 p_tb10 p_l25' focus="{{orderFocus}}" value='{{orderName}}' bindinput='orderNameFn' placeholder='请输入姓名'></input>
+    </view>
+    <view class='lh30 line_b pr'>
+      <image src='/assets/icon/inp_phone@2X.png' class='pa apply_box_img' mode='widthFix' style='width:14px;'></image>
+      <input type='number' maxlength='11' class='f_14 p_tb10 p_l25' value='{{orderPhone}}' bindinput='orderPhoneFn' placeholder='请输入手机号'></input>
+    </view>
+    <view class='lh40 f_12 c666'>提交信息后会有专人通过电话联系您</view>
+    <button class='apply_btn m_t5' disabled='{{applyDisable}}' catchtap='orderSureBtn'>提交</button>
+    <!--close  -->
+    <view class='apply_close pa' catchtap='closeApply'>
+      <image src='/assets/icon/apply_close@2X.png' mode='widthFix' style='width:26px;'></image>
+    </view>
+  </view>
+</view>

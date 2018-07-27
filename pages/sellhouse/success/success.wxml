@@ -1,0 +1,7 @@
+<!--pages/sellhouse/success/success.wxml-->
+<view class='text_middle w100 success_icon'>
+  <image mode='widthFix' src='/assets/icon/entrust_fan@2X.png' style='width:120px;'></image>
+  <view class='f_16 lh40 p_t10'>恭喜您，委托成功！</view>
+  <view class='f_14 c999'>请保持手机通畅，工作人员会及时联系您！</view>
+  <button catchtap='pageTab' data-url='/pages/my/request/request'>管理房源</button>
+</view>

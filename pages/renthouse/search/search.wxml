@@ -1,0 +1,63 @@
+<!--pages/home/search/search.wxml-->
+<!-- search box -->
+<view class='search_house'>
+  <view class='house_inp'>
+    <input class='f_14' placeholder='请输入楼盘或小区' value='{{searchVal}}' auto-focus bindinput="searchInp"/>
+    <view class='del_icon_box' catchtap='emptySearch' hidden='{{!searchVal}}'>
+      <image class='del_icon' src='/assets/icon/search_bksp@2X.png' mode='widthFix'></image>
+    </view>
+  </view>
+  <view class='cancel_btn f_14' catchtap='goBack'>取消</view>
+</view>
+<view class='search_content'>
+
+<!-- hot search -->
+  <scroll-view  scroll-y  class='search_box'>
+    <view class='hot_search f_14 bg_w p_rl15 p_tb10' wx:if='{{(fanType==1&&hotSearch.estate.length!=0)||(fanType==2&&hotSearch.fang.length!=0)||(fanType==3&&hotSearch.rent.length!=0)}}' hidden='{{searchVal}}'>
+      <view>
+        <image class='hot_icon' src='/assets/icon/hot_search@2X.png' mode='widthFix'></image>
+        <text class='lh40 c666 p_l10'>热门搜索</text>
+      </view>
+      <view class='search_label' wx:if='{{fanType==1}}'>
+        <text catchtap='hotSearchBtn' data-keyword='{{item.project_name}}' wx:for="{{hotSearch.estate}}" wx:key="key" wx:for-item="item">{{item.project_name}}</text>
+      </view>
+      <view class='search_label' wx:if='{{fanType==2}}'>
+        <text catchtap='hotSearchBtn'  data-keyword='{{item.estate_name}}'  wx:for="{{hotSearch.fang}}" wx:key="key" wx:for-item="item">{{item.estate_name}}</text>
+      </view>
+      <view class='search_label' wx:if='{{fanType==3}}'>
+        <text catchtap='hotSearchBtn'  data-keyword='{{item.estate_name}}'  wx:for="{{hotSearch.rent}}" wx:key="key" wx:for-item="item">{{item.estate_name}}</text>
+      </view>
+    </view>
+  <!-- search history -->
+    <view class='f_14'  hidden='{{searchVal}}'>
+      <view class='p_rl15'>
+        <text class='lh40'>搜索历史</text>
+        <image catchtap='emptyHistory' class='history_del' src='/assets/icon/delete_history@2X.png' mode='widthFix'></image>
+      </view>
+      <view class='history_list' wx:if='{{fanType==1}}' wx:for='{{searchHistory.newHouse}}' wx:key='key' wx:for-item='item'>
+        <view class='history_item bg_w line_b p_l15' catchtap='hotSearchBtn' data-keyword='{{item.name}}'>{{item.name}}（{{item.address}}）</view>
+      </view>
+      <view class='history_list' wx:if='{{fanType==2}}' wx:for='{{searchHistory.secondHouse}}' wx:key='key' wx:for-item='item'>
+        <view class='history_item bg_w line_b p_l15' catchtap='hotSearchBtn' data-keyword='{{item.name}}'>{{item.name}}（{{item.address}}）</view>
+      </view>
+      <view class='history_list' wx:if='{{fanType==3}}' wx:for='{{searchHistory.rentHouse}}' wx:key='key' wx:for-item='item'>
+        <view class='history_item bg_w line_b p_l15' catchtap='hotSearchBtn' data-keyword='{{item.name}}'>{{item.name}}（{{item.address}}）</view>
+      </view>
+      <view class='lh40 f_12 text_middle line_t' wx:if='{{fanType==1&&searchHistory.newHouse.length==0}}'>暂无搜索记录</view>
+      <view class='lh40 f_12 text_middle line_t' wx:if='{{fanType==2&&searchHistory.secondHouse.length==0}}'>暂无搜索记录</view>
+      <view class='lh40 f_12 text_middle line_t' wx:if='{{fanType==3&&searchHistory.rentHouse.length==0}}'>暂无搜索记录</view>
+    </view>
+  </scroll-view>
+  <!-- search list -->
+  <scroll-view  scroll-y  class='search_box' bindscrolltolower="nextPage">
+    <view class='search_list bg_w'  hidden='{{!searchVal.length}}'>
+      <view catchtap='pageTab' wx:for="{{searchRes}}" wx:key="key" wx:for-item="item" class='search_item p_tb10 line_b p_rl15' data-estate='{{item.fang_name}}' data-region_name='{{item.region_name}}' data-estatekey='{{item.estate_key}}' data-eid='{{item.estate_id}}' data-fankey='{{item.fang_key}}'>
+        <!-- <view class='f_16'><text class='c_orange'>万</text>达广场</view> -->
+        <view class='f_16' ><text wx:for="{{item.fang_name}}" wx:key="key" wx:for-item="val" class='{{val==searchVal?"c_orange":""}}'>{{val}}</text></view>
+        <text class='f_14 c999'>{{item.region_name}}</text>
+      </view>
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{!noSearch}}'>{{searchMore?'上拉加载更多':'正在搜索中'}}</view>
+      <view class='text_middle c999 f_14 p_t15 lh50 bg_f1' hidden='{{noSearch}}'>{{hasMore?'没有找到匹配的小区':'没有更多匹配的小区'}}</view>
+    </view>
+  </scroll-view>
+</view>

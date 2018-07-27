@@ -1,0 +1,217 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.7.2",
+	"appid": "wx201f6a939b1a5517",
+	"projectname": "huifang",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 28,
+			"list": [
+				{
+					"id": -1,
+					"name": "站点选择",
+					"pathName": "pages/home/location/location",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "主页搜索",
+					"pathName": "pages/home/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "主页搜索",
+					"pathName": "pages/bindphone/bindphone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新房",
+					"pathName": "pages/newhouse/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索楼盘",
+					"pathName": "pages/newhouse/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新房详情",
+					"pathName": "pages/newhouse/detail/detail",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "二手房",
+					"pathName": "pages/secondhouse/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "二手房详情",
+					"pathName": "pages/secondhouse/detailhouse/detailhouse",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "二手房小区详情",
+					"pathName": "pages/secondhouse/detailestate/detailestate",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "租房",
+					"pathName": "pages/renthouse/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "租房详情",
+					"pathName": "pages/renthouse/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我要出售",
+					"pathName": "pages/sellhouse/sell/sell",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/my/collect/collect",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/my/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "看房记录",
+					"pathName": "pages/my/record/record",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的委托",
+					"pathName": "pages/my/request/request",
+					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "浏览记录",
+					"pathName": "pages/my/history/history",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "委托详情",
+					"pathName": "pages/my/requestdetail/requestdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "委托成功",
+					"pathName": "pages/sellhouse/success/success",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定手机",
+					"pathName": "pages/bindphone/bindphone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "卖房搜索",
+					"pathName": "pages/sellhouse/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "授权页面",
+					"pathName": "pages/home/impower/impower",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "推荐主页",
+					"pathName": "pages/recommend/index/index",
+					"query": ""
+				},
+				{
+					"id": 25,
+					"name": "推荐详情",
+					"pathName": "pages/recommend/detail/detail",
+					"query": "estate_key=4959!!CFDSIJQvOP&estate_id=4959"
+				},
+				{
+					"id": -1,
+					"name": "推荐详情更多",
+					"pathName": "pages/recommend/detailmore/detailmore",
+					"query": "estate_key=4692!!ODgC2fXZyz&estate_id=4692"
+				},
+				{
+					"id": 27,
+					"name": "户型详情",
+					"pathName": "pages/recommend/housetype/housetype",
+					"query": "estate_key=4959!!CFDSIJQvOP&estate_id=4959"
+				},
+				{
+					"id": -1,
+					"name": "赚赚分享预约看房",
+					"pathName": "pages/recommend/orderhouse/orderhouse",
+					"query": "estate_key=4959!!CFDSIJQvOP&estate_id=4959"
+				},
+				{
+					"id": -1,
+					"name": "楼盘相册效果",
+					"pathName": "pages/recommend/estatephoto/estatephoto",
+					"query": ""
+				}
+			]
+		}
+	}
+}
