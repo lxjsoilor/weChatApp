@@ -573,7 +573,6 @@ App({
         success: function (data) {
           //成功回调
           val = val == '公园' ? "其他" : val;
-          console.log(data);
           tempObj[val] = data;
           tempIndex +=1;
           if(tempIndex >= 5){

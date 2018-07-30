@@ -83,8 +83,6 @@ Page({
   },
   previewBannerFn: function (e) {
     var url = e.currentTarget.dataset.url;
-    console.log(url);
-    console.log(this.data.previewBannerArr)
     wx.previewImage({
       current: url, // 当前显示图片的http链接
       urls: this.data.previewBannerArr
@@ -204,8 +202,8 @@ Page({
       });
       return;
     };
-    // 判断是否是赚赚分享
-    if (this.data.isSelfPage){
+    // 判断是否是赚赚分享，赚赚分享会带有client_from=10
+    if (!this.data.isSelfPage){
       this.setData({
         orderFocus: true,
         orderPop: false
@@ -213,10 +211,54 @@ Page({
     }else{
       app.pageTab(e);
     }
-    
   },
   // 预约看房确定
   orderSureBtn: function () {
+    if (app.nameCheck(this.data.orderName)) {
+      app.model('姓名不能包含特殊符号');
+      return;
+    } else if (app.nameSpace(this.data.orderName)) {
+      app.model('姓名不能包含空格符')
+      return;
+    } else if (!app.telCheck(this.data.orderPhone)) {
+      app.model('手机号码格式不正确')
+      return;
+    }
+    // 推荐楼盘预约看房
+    app.ajax('',{
+      label: ' XcxFollow1119',
+      project_key: this.data.project_key,
+      client_name: this.data.orderName,
+      client_mobile: this.data.orderPhone
+    }, (result)=>{
+      this.closeApply();
+      this.setData({
+        orderName: '',
+        orderPhone: '',
+        alertPop: true
+      });
+      this.canOrder();
+      if (result.data.msg == '推荐成功') {
+        this.setData({
+          alert: {
+            title: '预约成功!',
+            content: '客服人员将尽快与您联系',
+            img: '/assets/icon/order_success@2X.png'
+          }
+        });
+        
+      } else {
+        this.setData({
+          alert: {
+            title: '您已提交过预约!',
+            content: '无需重复提交',
+            img: '/assets/icon/order_error@2X.png'
+          }
+        })
+      }
+    })
+    return;
+
     app.orderHouse(this.data.orderName, this.data.orderPhone, this.data.estate_id, 1, this.data.detailData.region_id, (res) => {
       this.closeApply();
       this.setData({
@@ -331,7 +373,6 @@ Page({
         })
       });
       // 获取楼盘相册
-      // console.log(res.data.data)
       this.getEstatePhoto(res.data.data.estate_key);
 
     })
@@ -370,7 +411,6 @@ Page({
       label: 'XcxEstatePhoto',
       estate_key: estate_key
     },(result)=>{
-      console.log(result);
       var tempArr = [];
       result.data.data
       for(var key in result.data.data){
@@ -392,10 +432,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 赚赚分享会带有client_from=10
     this.setData({
       project_id: options.project_id,
       project_key: options.project_key,
-      isSelfPage: !!options.is_self_page ? true : false
+      isSelfPage: options.client_from==10 ? true : false
     })
   },
 

@@ -17,6 +17,9 @@ Page({
         url = `/pages/newhouse/detail/detail?estate_key=${e.currentTarget.dataset.estatekey}&estate_id=${e.currentTarget.dataset.estateid}`
       } else if (e.currentTarget.dataset.type == '二手房') {
         url = `/pages/secondhouse/detailhouse/detailhouse?fang_key=${e.currentTarget.dataset.fankey}`
+      } else if (e.currentTarget.dataset.type == '推荐项目'){
+        // 跳转到推荐项目
+        url = `/pages/recommend/detail/detail?project_id=${e.currentTarget.dataset.project_id}&project_key=${e.currentTarget.dataset.project_key}`;
       } else {
         url = `/pages/renthouse/detail/detail?fang_key=${e.currentTarget.dataset.fankey}`
       };
@@ -77,7 +80,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(9090)
     this.getList()
   },
 

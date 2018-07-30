@@ -40,9 +40,6 @@ Page({
   pageChange: function (e) {
     var current = e.detail.current;
     var tempIndex = 0;
-    
-    console.log(current);
-    console.log(1111);
     for (var key in this.data.txtObj) {
       tempIndex += 1;
       if (current <= key) {
@@ -56,9 +53,6 @@ Page({
         var index = tempArr.findIndex((val)=>{
           return val;
         });
-        console.log(this.data.txtObj[key].split('-')[0]);
-        console.log(currentPage - key + current);
-        
         this.setData({
           classCurrent: tempArr,
           scrollTop: 100 * index,
@@ -126,7 +120,6 @@ Page({
       }
       var imgIndex = 0;
       
-      console.log(resulte)
       imgTypeFn(resulte['xg'], 'xg');
       imgTypeFn(resulte['yb'], 'yb');
       imgTypeFn(resulte['sj'], 'sj');

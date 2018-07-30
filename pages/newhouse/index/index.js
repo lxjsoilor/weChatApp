@@ -54,7 +54,6 @@ Page({
       return;
     }else{
       var page = this.data.page+=1;
-      console.log(page)
       this.getList(page);
       this.setData({
         page:page
@@ -226,7 +225,6 @@ Page({
       estate_price:this.data.priceid == 1?'': this.data.priceid,
       page:page
     },(res) => {
-      console.log(res);
       if(res.data.status == 1){
         this.setData({
           dataList: this.data.dataList.concat(res.data.data),
@@ -253,7 +251,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(1)
+    
   },
 
   /**
@@ -269,7 +267,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(3)
+    
   },
 
   /**
@@ -297,7 +295,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log(90)
+    
   },
 
   /**

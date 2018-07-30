@@ -32,6 +32,10 @@
 .gender_radio radio {
   transform: scale(0.7)
 }
+.order_agent {
+  border-radius: 50%;
+  overflow: hidden;
+}
 
 .order_agent_btn {
   margin-top: 60px;

@@ -9,7 +9,9 @@ Page({
     // 性别选择
     genderItme: [true,false],
     // 是否可以发送亲切
-    canPostBool:true
+    canPostBool:true,
+    hasAgent:true,
+    namePostFlag:false
 
   },
   getDetail:function(){
@@ -33,7 +35,6 @@ Page({
   },
   canPost: function () {
     if (app.telCheck(this.data.phoneNum) && this.data.namePost != '') {
-      console.log(900)
       this.setData({
         canPostBool: false
       })
@@ -43,9 +44,11 @@ Page({
       })
     }
   },
+  radioChange:function(res){
+    
+  },
   // 预约提交
   orderBtn: function(){ 
-    // console.log(90);
     if (this.data.namePost == '') {
       app.model('姓名不能为空')
       return;
@@ -58,22 +61,90 @@ Page({
     } else if (!app.telCheck(this.data.phoneNum)) {
       app.model('手机号码格式不正确');
       return;
+    };
+    // 推荐客户给经纪人
+    var genderItmeIndex = this.data.genderItme.findIndex((val)=>{
+      return val;
+    })
+    // 如果有托管人就推荐给托管人
+    if(!this.data.hasAgent){
+      app.ajax('', {
+        label: 'XcxFollow1118',
+        project_key: this.data.projectKey,
+        agent_id: this.data.agentId,
+        client_name: this.data.namePost,
+        client_sex: genderItmeIndex+1,
+        client_mobile: this.data.phoneNum
+      }, (res) => {
+        if (res.data.msg == '推荐成功') {
+          wx.showToast({
+            title: '预约成功',
+            icon: 'success',
+            duration: 2000
+          });
+          this.emptyData();
+          this.canPost();
+        }else{
+          app.model(res.data.msg)
+        }
+      })
+    }else{
+      // 没有托管人就推荐给银行
+      app.ajax('',{
+        label: ' XcxFollow1119',
+        project_key: this.data.projectKey,
+        client_name: this.data.namePost,
+        client_mobile: this.data.phoneNum,
+        client_sex: genderItmeIndex + 1,
+      },(result) => {
+        if (result.data.msg == '推荐成功'){
+          wx.showToast({
+            title: '预约成功',
+            icon: 'success',
+            duration: 2000
+          });
+          this.emptyData();
+          this.canPost();
+        }else{
+          app.model(result.data.msg)
+        }
+      })
     }
+  },
+  // 清空数据函数
+  emptyData: function(){
+    this.setData({
+      namePost:'',
+      phoneNum:'',
+      genderItme: [true, false],
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      estate_key: options.estate_key
-    });
+      projectKey: options.project_key
+    })
     // 获取托管人列表
     app.ajax('',{
       label: 'XcxTuoGuanUser',
-      appid: app.globalData.appid,
-      estate_id: 4959
+      // appid: app.globalData.appid,
+      estate_id: options.estate_id
     },(result) => {
-      console.log(result)
+      this.setData({
+        namePostFlag: true
+      })
+      if(result.data.msg == '请求成功'){
+        this.setData({
+          agentRole: result.data.data.user_role,
+          agentName: result.data.data.user_name,
+          agentPhone: result.data.data.user_mobile,
+          agentAtv: result.data.data.upload_url,
+          agentId: result.data.data.user_id,
+          hasAgent: false,
+        })
+      }
     })
   },
   /**

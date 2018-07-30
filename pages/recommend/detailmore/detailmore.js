@@ -18,7 +18,6 @@ Page({
       label: 'XcxProjectDetail',
       project_key: this.data.project_key
     }, (res) => {
-      console.log(res)
       this.setData({
         detailData: res.data.data,
         isDataBack: true

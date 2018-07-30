@@ -12,7 +12,7 @@
     <view class='bg_w p_rl15 lh20 p_tb10 p_b15'>
       <view class='discounts_label'>
         <view><image class='discounts_inform' src='/assets/icon/inform_icon.gif'></image><text class='c666'>均价</text> <text class='c_orange'>{{detailData.project_price}}</text> <text class='c666'>元/㎡</text></view>
-        <view class='f_16'><text class='c_orange f_14 discounts_icon'>优惠</text>{{!!detailData.project_you_hui?detailData.project_you_hui:"暂无优惠"}}</view>
+        <view class='f_16'><text class='c_orange f_14 discounts_icon'>优惠</text>{{detailData.project_you_hui!='--'?detailData.project_you_hui:"暂无优惠"}}</view>
       </view>
     </view>
     <view class='recommend_title'>
@@ -64,7 +64,7 @@
               <image style='{{defeatedImg}}' src='{{item.upload_url}}' mode='aspectFill'></image>
             </view>
             <view class='f_14 lh24 oneIn oneIn_1 m_t10' style='width:135px;'><text class='m_r10'>{{item.housetype_num}}</text> <text class='c666'>{{item.housetype_area}}</text></view>
-            <view class='f_12 lh24 oneIn oneIn_1 c_orange'>约{{item.housetype_total}}万</view>
+            <view class='f_12 lh24 oneIn oneIn_1 c_orange'>约{{item.housetype_total}}</view>
           </view>
           </movable-view>
         </movable-area>
@@ -90,7 +90,7 @@
 
     <view class='bg_f1' style='height:10px;'></view>
     
-    <button class='subscribe fixed'  data-url="/pages/recommend/orderhouse/orderhouse?estate_key=4692!!ODgC2fXZyz&estate_id=4692" catchtap='orderBtn'>预约看房</button>
+    <button class='subscribe fixed'  data-url="/pages/recommend/orderhouse/orderhouse?project_key={{project_key}}&estate_id={{detailData.estate_id}}" catchtap='orderBtn'>预约看房</button>
     <view class='temp_btn'></view>
   </view>
 </view>

@@ -2,24 +2,25 @@
 
 <view wx:if='{{isDataBack}}'>
   <!-- 经纪人名片 -->
-  <view class='order_agent_card bg_w'>
+  <view class='order_agent_card bg_w' hidden='{{hasAgent}}'>
     <view class='p_tb15 p_l15'>
       <view class='order_agent in_b img_middle'>
-        <image class='' src='/assets/icon/default_atv.png'></image>
+        <!-- <image class='' src='/assets/icon/default_atv.png'></image> -->
+        <image class='' src='{{agentAtv}}'></image>
       </view>
       <view class='in_b img_middle p_l20 f_15'>
-        <view class='lh32'>置业顾问：戴永民</view>
-        <view class='lh32'>联系方式：18666778869</view>
+        <view class='lh32'>{{agentRole}}：{{agentName}}</view>
+        <view class='lh32'>联系方式：{{agentPhone}}</view>
       </view>
     </view>
   </view>
   <!-- 小标题 -->
-  <view class='f_13 c333 text_middle'>提交后您的置业顾问会与您联系看房时间</view>
+  <view class='f_13 c333 text_middle' hidden='{{hasAgent}}'>提交后您的置业顾问会与您联系看房时间</view>
   <!-- 预约看房提交 -->
   <view class='order_agent_card order_agent_form bg_w'>
     <view class='line_b f_14 p_l15'>
       <text>姓名</text>
-      <input class='in_b' bindinput='inputName' maxlength='5' placeholder-class='c999' placeholder='请输入您的姓名'></input>
+      <input class='in_b' bindinput='inputName' value='{{namePost}}' focus='{{namePostFlag}}' maxlength='5' placeholder-class='c999' placeholder='请输入您的姓名'></input>
     </view>
     <view class='line_b f_14 p_l15'>
       <text>性别</text>
@@ -36,7 +37,7 @@
     </view>
     <view class='line_b f_14 p_l15'>
       <text>电话</text>
-      <input type='number' bindinput='inputPhone' maxlength='11' class='in_b' placeholder-class='c999' placeholder='请输入您的手机号'></input>
+      <input type='number' bindinput='inputPhone' maxlength='11' value='{{phoneNum}}' class='in_b' placeholder-class='c999' placeholder='请输入您的手机号'></input>
     </view>
   </view>
 

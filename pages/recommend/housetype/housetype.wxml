@@ -23,7 +23,7 @@
       <view class='line_b p_rl15' style='height:40px;'>
         <view class='w100' style='overflow:hidden'>
           <text>装修情况</text>
-          <text class='fr'>{{detailData.housetype_type}}</text>
+          <text class='fr'>{{detailData.estate_decoration}}</text>
         </view>
       </view>
       <view class='line_b p_rl15' style='height:40px;'>

@@ -53,14 +53,14 @@
       </view>
     </view> 
     <!-- type -->
-    <scroll-view scroll-y class='filter_pop lh40 bg_w' hidden='{{tab[2]}}'>
-      <view class='line_b p_rl15' data-key='0' data-text='类型' catchtap='selectType'>
+    <view scroll-y  catchtouchmove='returnFalse' class='filter_pop lh40 bg_w' hidden='{{tab[2]}}'>
+      <view   catchtouchmove='returnFalse' class='line_b p_rl15' data-key='0' data-text='类型' catchtap='selectType'>
         <view class='filter_pop_item {{typeid==0?"current":""}}'>不限</view>
       </view>
       <view class='line_b p_rl15' wx:for='{{typeList}}' wx:key='key' wx:for-item='item' data-key='{{item.key}}' data-text='{{item.value}}'  catchtap='selectType'>
         <view class='filter_pop_item {{typeid==item.key?"current":""}}'>{{item.value}}</view>
       </view>
-    </scroll-view> 
+    </view> 
 
   </view>
 </view> 
@@ -68,7 +68,7 @@
 <scroll-view  scroll-y="true" bindscrolltolower="nextPage" lower-threshold="1"  class='house_list_box recommend_list_box bg_w '>
   <!-- new house item -->
   <view class='sale_list'>
-    <view wx:for="{{dataList}}" wx:key="key" wx:for-item="item" data-savetype='1' data-saveid='{{item.estate_id}}' class='sale_item line_b' data-url='/pages/recommend/detail/detail?project_id={{item.project_id}}&project_key={{item.project_key}}&is_self_page=1' catchtap='pageTab'>
+    <view wx:for="{{dataList}}" wx:key="key" wx:for-item="item" data-savetype='1' data-saveid='{{item.estate_id}}' class='sale_item line_b' data-url='/pages/recommend/detail/detail?project_id={{item.project_id}}&project_key={{item.project_key}}' catchtap='pageTab'>
       <view class='sale_img'>
         <view>
            <image style='{{defeatedImg}}' src='{{item.upload_id}}' mode='widthFix' ></image>  
