@@ -24,6 +24,7 @@
   vertical-align: middle;
   padding-left: 35px;
   margin-bottom: 4px;
+  width: 150px;
 }
 .gender_radio {
   padding-left: 35px;

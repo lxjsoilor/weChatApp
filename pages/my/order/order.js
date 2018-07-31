@@ -9,6 +9,12 @@ Page({
     list: [],
     delBtnWidth: 80,
   },
+  // binderror: function(e){
+  //   var _errImg = e.target.dataset.img;
+  //   console.log(e);
+  //   var _errObj = {}
+  //   _errObj[_errImg] = "/assets/icon/null_img.jpg"
+  // },
   pageTab: function (e) {
     if (!e.currentTarget.dataset.status) {
       console.log(e);

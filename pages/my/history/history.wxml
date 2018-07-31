@@ -16,7 +16,7 @@
           <image src='{{item.upload_id}}' style='height:100%;' ></image> 
         </view>
         <view class='sale_content_my'>
-          <view class='oneIn oneIn_1'>
+          <view class='oneIn oneIn_1 max_h21_'>
               <text class='sale_name f_16'>{{item.title}}</text> 
               <text class='f_12 fr fan_type'>{{item.type}}</text>
           </view>
@@ -44,14 +44,14 @@
           <view wx:if='{{item.data_type==1}}'>
             <view class='oneIn oneIn_1'>
               <!-- <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{true}}'>13500元/m</text>  -->
-              <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount!=""}}' >{{item.price}}元/<text class='f_12'>㎡</text></text> 
+              <text class='f_14 c999 c_red p_r15 in_b' wx:if='{{item.discount!=""}}' >{{item.price}}<text wx:if='{{item.price!="暂无售价"}}'>元/<text class='f_12'>㎡</text></text></text> 
               <text class='f_12 c666 m_r5'>面积</text> 
               <text class='f_12 c666 m_r5'>{{item.area}}</text> 
               <!-- <text class='f_12 c666 m_r5'>125m</text> 
               <text class='f_12 c666 m_r5'>精装修</text>  -->
             </view>
             <view wx:if='{{item.discount==""}}' >
-              <text class='f_14 c999 c_red p_r15 in_b'>{{item.price}}元/<text class='f_12'>㎡</text></text> 
+              <text class='f_14 c999 c_red p_r15 in_b'>{{item.price}}<text wx:if='{{item.price!="暂无售价"}}'>元/<text class='f_12'>㎡</text></text></text> 
             </view>
             <view wx:if='{{item.discount!=""}}' class='oneIn oneIn_1 f_12'>
               <text class='hui_icon'>惠</text>

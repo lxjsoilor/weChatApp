@@ -65,7 +65,7 @@
   </view>
 </view> 
 <!-- new house list -->
-<scroll-view  scroll-y="true" bindscrolltolower="nextPage" lower-threshold="1"  class='house_list_box recommend_list_box bg_w '>
+<scroll-view  scroll-y="true" bindscrolltolower="nextPage" bindscrolltoupper="pullDownRefresh" lower-threshold="1"  class='house_list_box recommend_list_box bg_w '>
   <!-- new house item -->
   <view class='sale_list'>
     <view wx:for="{{dataList}}" wx:key="key" wx:for-item="item" data-savetype='1' data-saveid='{{item.estate_id}}' class='sale_item line_b' data-url='/pages/recommend/detail/detail?project_id={{item.project_id}}&project_key={{item.project_key}}' catchtap='pageTab'>

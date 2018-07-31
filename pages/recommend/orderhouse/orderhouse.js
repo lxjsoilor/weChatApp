@@ -117,7 +117,8 @@ Page({
       namePost:'',
       phoneNum:'',
       genderItme: [true, false],
-    })
+    });
+    app.goBack();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -132,9 +133,6 @@ Page({
       // appid: app.globalData.appid,
       estate_id: options.estate_id
     },(result) => {
-      this.setData({
-        namePostFlag: true
-      })
       if(result.data.msg == '请求成功'){
         this.setData({
           agentRole: result.data.data.user_role,
@@ -144,7 +142,12 @@ Page({
           agentId: result.data.data.user_id,
           hasAgent: false,
         })
-      }
+      };
+      setTimeout(() => {
+        this.setData({
+          namePostFlag: true
+        });
+      }, 100)
     })
   },
   /**
